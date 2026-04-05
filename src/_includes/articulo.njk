@@ -13,7 +13,9 @@ layout: base.njk
     </div>
 
     {% if image %}
-    <img src="{{ image }}" alt="{{ title }}" style="width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 50px;">
+    <div class="articulo-img-container" style="margin-bottom: 50px; text-align: center;">
+        {% optimizedImage image, title, "(max-width: 800px) 100vw, 1200px", "articulo-imagen-principal" %}
+    </div>
     {% endif %}
 
     <div class="contenido-articulo" style="font-size: 1.15rem; color: #444; line-height: 1.8;">
@@ -62,5 +64,28 @@ layout: base.njk
         margin: 30px 0;
         font-style: italic;
         color: #555;
+    }
+    .articulo-img-container {
+        width: 100%;
+        max-width: 100%;
+        overflow: visible; /* To allow shadow */
+    }
+    
+    .articulo-img-container picture {
+        display: block;
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    
+    .articulo-imagen-principal {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 500px;
+        object-fit: cover;
+        margin: 0 auto;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 </style>
