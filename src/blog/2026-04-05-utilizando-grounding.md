@@ -2,10 +2,7 @@
 layout: articulo.njk
 title: Utilizando grounding
 date: 2026-04-05
-description: |-
-  El grounding es una técnica de regulación emocional diseñada para "anclar" a la persona en el momento presente. Se utiliza principalmente para interrumpir estados de ansiedad, ataques de pánico o disociación, redirigiendo la atención desde los pensamientos abrumadores hacia los estímulos físicos y tangibles del entorno.
-
-  En esencia, sirve para comunicarle a tu sistema nervioso que, en este preciso instante, estás a salvo.
+description: El grounding es una técnica de regulación emocional diseñada para "anclar" a la persona en el momento presente.
 image: /Gemini_Generated_Image_vn5bg5vn5bg5vn5b.png
 ---
 
