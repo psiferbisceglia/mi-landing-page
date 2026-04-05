@@ -3,6 +3,7 @@ layout: articulo.njk
 title: La importancia de las Terapias Contextuales hoy
 date: 2026-04-05
 description: Un breve recorrido por los beneficios de la Terapia de Aceptación y Compromiso (ACT).
+image: /Gemini_Generated_Image_othszbothszboths (1).png
 tags: blog
 ---
 
@@ -10,13 +11,13 @@ La psicoterapia contemporánea ha evolucionado mucho en las últimas décadas. E
 
 ## ¿Qué son las Terapias Contextuales?
 
-A diferencia de modelos anteriores que se enfocaban principalmente en cambiar el *contenido* de los pensamientos (por ejemplo, intentar pensar de forma más positiva), las terapias contextuales ponen el énfasis en cambiar la *función* que esos pensamientos tienen en nuestra vida.
+A diferencia de modelos anteriores que se enfocaban principalmente en cambiar el _contenido_ de los pensamientos (por ejemplo, intentar pensar de forma más positiva), las terapias contextuales ponen el énfasis en cambiar la _función_ que esos pensamientos tienen en nuestra vida.
 
-Un excelente ejemplo de esto es la **Terapia de Aceptación y Compromiso (ACT)**. 
+Un excelente ejemplo de esto es la **Terapia de Aceptación y Compromiso (ACT)**.
 
 ### Principios Fundamentales
 
-1. **Aceptación:** En lugar de luchar contra emociones displacenteras como la ansiedad o la tristeza, ACT propone hacerles espacio. La lucha constante contra el sufrimiento a menudo genera *más* sufrimiento.
+1. **Aceptación:** En lugar de luchar contra emociones displacenteras como la ansiedad o la tristeza, ACT propone hacerles espacio. La lucha constante contra el sufrimiento a menudo genera _más_ sufrimiento.
 2. **Defusión Cognitiva:** Aprender a tomar distancia de nuestros propios pensamientos. No somos todo lo que pensamos; un pensamiento es, en esencia, solo una historia que nos cuenta la mente en un momento determinado.
 3. **Valores:** Clarificar qué es realmente importante para nosotros. Si la incomodidad emocional deja de ser el obstáculo principal, ¿hacia dónde queremos dirigir nuestras acciones?
 
