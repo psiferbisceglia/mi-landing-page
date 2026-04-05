@@ -1,0 +1,66 @@
+---
+layout: base.njk
+---
+
+<article style="max-width: 800px; margin: 0 auto; padding: 150px 20px 100px;">
+    
+    <div style="text-align: center; margin-bottom: 50px;">
+        <span style="color: #666; font-size: 0.95rem;">{{ page.date | formatoFecha }}</span>
+        <h1 style="font-size: 3rem; color: var(--color-principal); margin: 15px 0;">{{ title }}</h1>
+        {% if description %}
+        <p style="font-size: 1.25rem; color: #555; font-style: italic; max-width: 600px; margin: 0 auto;">{{ description }}</p>
+        {% endif %}
+    </div>
+
+    {% if image %}
+    <img src="{{ image }}" alt="{{ title }}" style="width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 50px;">
+    {% endif %}
+
+    <div class="contenido-articulo" style="font-size: 1.15rem; color: #444; line-height: 1.8;">
+        {{ content | safe }}
+    </div>
+    
+    <hr style="border: none; border-top: 1px solid rgba(0,0,0,0.1); margin: 60px 0;">
+    
+    <div style="display: flex; align-items: center; justify-content: center; gap: 30px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.03);">
+        <img src="/fotoperfil.webp" alt="Fernando Bisceglia" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        <div>
+            <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--color-texto);">Lic. Prof. Fernando Bisceglia</h3>
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Psicólogo Clínico. Especialista en Terapias Contextuales.</p>
+            <a href="/#contacto" class="btn" style="padding: 8px 20px; font-size: 0.9rem;">Agendar un turno</a>
+        </div>
+    </div>
+    
+</article>
+
+<style>
+    /* Estilos específicos para el markdown generado */
+    .contenido-articulo h2 {
+        font-size: 2rem;
+        color: var(--color-principal);
+        margin: 40px 0 20px;
+    }
+    .contenido-articulo h3 {
+        font-size: 1.5rem;
+        margin: 30px 0 15px;
+    }
+    .contenido-articulo p {
+        margin-bottom: 25px;
+    }
+    .contenido-articulo ul, .contenido-articulo ol {
+        margin: 0 0 25px 20px;
+    }
+    .contenido-articulo li {
+        margin-bottom: 10px;
+    }
+    .contenido-articulo strong {
+        color: var(--color-texto);
+    }
+    .contenido-articulo blockquote {
+        border-left: 4px solid var(--color-principal);
+        padding-left: 20px;
+        margin: 30px 0;
+        font-style: italic;
+        color: #555;
+    }
+</style>

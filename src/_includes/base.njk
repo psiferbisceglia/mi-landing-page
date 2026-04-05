@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title | default("Fernando Bisceglia | Psicólogo") }}</title>
+
+    <!-- Meta etiquetas SEO -->
+    <meta name="description"
+        content="Fernando Bisceglia, psicólogo clínico y psicoterapeuta. Sesiones online, psicoterapia basada en evidencia y orientación psicológica.">
+    <meta name="author" content="Fernando Bisceglia">
+
+    <!-- Open Graph (Redes Sociales y WhatsApp) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ title | default('Fernando Bisceglia | Psicólogo Clínico') }}">
+    <meta property="og:description"
+        content="Acompañamiento profesional para tu bienestar mental y desarrollo personal.">
+    <meta property="og:image" content="/fotoperfil.webp">
+
+    <!-- Precarga de fuentes para mejorar rendimiento -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- ESTILOS VISUALES --- */
+        :root {
+            --color-fondo: #F9FBF9;
+            --color-texto: #2C3E50;
+            --color-principal: #6B8E6B;
+            --color-secundario: #E8EFE8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--color-texto);
+            background-color: var(--color-fondo);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+        }
+
+        /* Navegación */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 18px 45px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 60px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            font-size: 1.35rem;
+            color: var(--color-principal);
+            text-decoration: none;
+        }
+
+        nav .enlaces a {
+            color: var(--color-texto);
+            text-decoration: none;
+            margin-left: 35px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        nav .enlaces a:hover {
+            color: var(--color-principal);
+        }
+
+        /* Secciones generales */
+        section {
+            padding: 100px 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .seccion-oscura {
+            background-color: var(--color-secundario);
+        }
+
+        .titulo-seccion {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--color-principal);
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--color-principal);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #557255;
+        }
+
+        /* Inicio */
+        #inicio {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .inicio-texto {
+            max-width: 50%;
+        }
+
+        .inicio-texto h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        .inicio-texto h2 {
+            font-size: 1.5rem;
+            color: #666;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .foto-perfil {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: filter 0.4s ease;
+        }
+
+        .foto-perfil:hover {
+            filter: saturate(1.2);
+        }
+
+        /* Servicios */
+        .grid-servicios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .tarjeta-servicio {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 30px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .tarjeta-servicio:hover {
+            transform: translateY(-8px);
+            background: var(--color-secundario);
+            border-color: transparent;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .tarjeta-servicio h3 {
+            margin-bottom: 15px;
+            color: var(--color-principal);
+        }
+
+        /* Contacto */
+        .contacto-contenedor {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .card-admision {
+            background: white;
+            padding: 50px;
+            border-radius: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .card-admision p {
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .pasos-horizontal {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .pasos-horizontal::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 15%;
+            right: 15%;
+            height: 1px;
+            background: var(--color-principal);
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        .paso-item {
+            position: relative;
+            z-index: 2;
+            background: white;
+            width: 33%;
+            padding: 0 10px;
+        }
+
+        .num-circulo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--color-fondo);
+            border: 2px solid var(--color-principal);
+            color: var(--color-principal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-family: 'Lora', serif;
+            font-size: 1.2rem;
+            transition: all 0.4s ease;
+        }
+
+        .paso-item:hover .num-circulo {
+            background-color: var(--color-principal);
+            color: white;
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 10px 20px rgba(107, 142, 107, 0.3);
+        }
+
+        .paso-texto {
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        .sobre-mi-contenedor {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: left;
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        .sobre-mi-intro {
+            font-size: 1.35rem;
+            color: var(--color-principal);
+            text-align: center;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .sobre-mi-texto p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .destacado-sobre-mi {
+            background-color: white;
+            padding: 30px;
+            border-left: 4px solid var(--color-principal);
+            border-radius: 0 10px 10px 0;
+            margin: 40px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--color-texto);
+        }
+
+        .redes-iconos {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .redes-iconos a {
+            color: var(--color-principal);
+            font-size: 2.2rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .redes-iconos a:hover {
+            color: #557255;
+            transform: scale(1.15);
+        }
+
+        .animar {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-in;
+        }
+
+        .animar.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            background-color: var(--color-texto);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+        }
+
+        .footer-iconos {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            margin-bottom: 25px;
+        }
+
+        .footer-iconos a {
+            color: white;
+            font-size: 1.8rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+        }
+
+        .footer-iconos a:hover {
+            color: var(--color-principal);
+            transform: translateY(-8px) scale(1.2);
+            text-shadow: 0 10px 20px rgba(107, 142, 107, 0.6);
+        }
+
+        .footer-legales {
+            font-size: 0.9rem;
+            color: #a0aab5;
+            line-height: 1.6;
+        }
+
+        /* --- ESTILOS EXTRAS PARA EL BLOG --- */
+        .blog-header {
+            padding: 150px 10% 50px;
+            text-align: center;
+            background-color: var(--color-secundario);
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+            padding: 20px 10% 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .articulo-tarjeta {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--color-texto);
+            display: flex;
+            flex-direction: column;
+        }
+        .articulo-tarjeta:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+        }
+        .articulo-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: var(--color-secundario);
+        }
+        .articulo-contenido {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .articulo-fecha {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 10px;
+        }
+        .articulo-titulo {
+            font-size: 1.4rem;
+            color: var(--color-principal);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .articulo-desc {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .leer-mas {
+            color: var(--color-principal);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-top: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #inicio {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 120px;
+            }
+
+            .inicio-texto {
+                max-width: 100%;
+                margin-top: 30px;
+            }
+
+            .inicio-texto h1 {
+                font-size: 2.5rem;
+            }
+
+            .foto-perfil {
+                width: 250px;
+                height: 250px;
+            }
+
+            nav {
+                width: 95%;
+                flex-direction: column;
+                padding: 15px;
+                border-radius: 20px;
+            }
+
+            nav .enlaces {
+                margin-top: 10px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            nav .enlaces a {
+                margin: 0 10px;
+                font-size: 0.9rem;
+            }
+
+            .pasos-horizontal {
+                flex-direction: column;
+                gap: 30px;
+                align-items: center;
+            }
+
+            .pasos-horizontal::before {
+                display: none;
+            }
+
+            .paso-item {
+                width: 100%;
+            }
+
+            .destacado-sobre-mi {
+                font-size: 1.1rem;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="/" class="logo">Lic. Prof. Fernando Bisceglia</a>
+        <div class="enlaces">
+            <a href="/#inicio">Inicio</a>
+            <a href="/#sobre-mi">Sobre mí</a>
+            <a href="/#servicios">Servicios</a>
+            <a href="/blog/">Artículos</a>
+            <a href="/#contacto">Contacto</a>
+        </div>
+    </nav>
+
+    <main>
+        {{ content | safe }}
+    </main>
+
+    <footer>
+        <div class="footer-iconos">
+            <a href="mailto:psiferbisceglia@gmail.com" title="Envíame un email"><i class="fa-regular fa-envelope"></i></a>
+            <a href="https://www.tiktok.com/@PsiFerBisceglia" target="_blank" rel="noopener noreferrer" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@PsiFerBisceglia" target="_blank" rel="noopener noreferrer" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.instagram.com/psiferbisceglia" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+
+        <div class="footer-legales">
+            <p>&copy; 2026 Lic. Prof. Fernando Bisceglia. Todos los derechos reservados.</p>
+            <p style="margin-top: 5px; font-size: 0.85rem;">Psicólogo Clínico</p>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            let delay = 0;
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, delay);
+                    delay += 150;
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animar').forEach((el) => observer.observe(el));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "mi-landing-page",
+  "version": "1.0.0",
+  "description": "Sitio estático con Eleventy y CMS",
+  "main": "index.js",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.1"
+  }
+}

@@ -1,0 +1,14 @@
+# Basura de Node
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Salida de Eleventy (se genera sola en Vercel)
+_site/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Otros
+.env

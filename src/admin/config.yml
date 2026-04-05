@@ -1,0 +1,23 @@
+backend:
+  name: github
+  repo: psiferbisceglia/mi-landing-page
+  branch: main # O la rama que estés utilizando
+
+locale: es
+
+media_folder: "src"
+public_folder: "/"
+
+collections:
+  - name: "blog"
+    label: "Artículos del Blog"
+    folder: "src/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "articulo.njk" }
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Descripción / Resumen", name: "description", widget: "text" }
+      - { label: "Imagen Principal (Opcional)", name: "image", widget: "image", required: false }
+      - { label: "Cuerpo del Artículo", name: "body", widget: "markdown" }

@@ -1,0 +1,32 @@
+---
+layout: base.njk
+title: "Artículos - Fernando Bisceglia"
+---
+
+<section class="blog-header animar">
+    <h1 style="font-size: 3rem; color: var(--color-principal); margin-bottom: 20px;">Artículos</h1>
+    <p style="font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto;">
+        Reflexiones, herramientas e información basada en evidencia sobre psicología cognitiva, terapias contextuales y salud mental.
+    </p>
+</section>
+
+<div class="blog-grid">
+    {% for post in collections.blog | reverse %}
+    <a href="{{ post.url }}" class="articulo-tarjeta animar">
+        {% if post.data.image %}
+        <img src="{{ post.data.image }}" alt="{{ post.data.title }}" class="articulo-img">
+        {% else %}
+        <div class="articulo-img" style="display: flex; align-items: center; justify-content: center; background: var(--color-secundario);">
+            <i class="fa-regular fa-file-lines" style="font-size: 3rem; color: var(--color-principal); opacity: 0.5;"></i>
+        </div>
+        {% endif %}
+        
+        <div class="articulo-contenido">
+            <div class="articulo-fecha">{{ post.date | formatoFecha }}</div>
+            <h2 class="articulo-titulo">{{ post.data.title }}</h2>
+            <p class="articulo-desc">{{ post.data.description }}</p>
+            <div class="leer-mas">Leer artículo <i class="fa-solid fa-arrow-right" style="margin-left: 5px; font-size: 0.8rem;"></i></div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
