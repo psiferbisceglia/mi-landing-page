@@ -8,11 +8,11 @@ description: |-
 image: /Gemini_Generated_Image_tr2zietr2zietr2z.png
 ---
 
-### El experimento que lo cambió todo
+## El experimento que lo cambió todo
 
 A principios del siglo XX, **Wolfgang Köhler** observó algo fascinante en un chimpancé llamado Sultan. No se trataba de probar mil veces hasta acertar por puro azar (ensayo y error). Sultan se quedaba quieto, observaba los elementos —el plátano lejano, los dos palos cortos— y, en un momento de **reestructuración perceptiva**, entendía que ambos palos podían ser una sola herramienta.
 
-## **1. El Asociacionismo Conductista: Aprender por acumulación**
+## 1. El Asociacionismo Conductista: Aprender por acumulación
 
 Para autores como **Thorndike** o **Skinner**, el aprendizaje es una cuestión de "conexiones". No hay una mente que razona, sino un organismo que reacciona.
 
@@ -51,8 +51,6 @@ Es el paso del "saber hacer" al "saber decir". El sujeto reflexiona sobre su pro
 Es el aprendizaje por comprensión. Los nuevos datos no solo se "agregan" a lo que ya sabíamos, sino que **obligan a modificar todo nuestro sistema de creencias**. Es lo que Pozo llama "aprendizaje constructivo".
 
 > **La tesis de Pozo:** La reestructuración es un proceso costoso y poco frecuente. Gran parte de lo que aprendemos es asociativo, pero el aprendizaje que realmente nos transforma como seres humanos es el que logra integrar la práctica con la toma de conciencia y el cambio de nuestros modelos mentales.
-
-
 
 Bibliografía para profundizar:
 
