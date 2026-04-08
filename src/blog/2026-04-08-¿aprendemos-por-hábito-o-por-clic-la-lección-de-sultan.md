@@ -34,8 +34,6 @@ Los gestaltistas (Köhler, Wertheimer) dieron el salto hacia el sujeto activo. P
 
 ## 3. La versión superadora de Pozo: Integración y jerarquía
 
-Aquí es donde tu perfil de investigador en Psicología Cognitiva brilla. **Juan Ignacio Pozo** propone que no debemos elegir entre una u otra, sino entender cómo interactúan. Aprender conceptos complejos requiere de un proceso más rico.
-
 Pozo plantea que el aprendizaje humano más evolucionado ocurre en tres niveles:
 
 ### A. Repetición (La base asociativa)
