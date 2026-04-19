@@ -590,9 +590,15 @@
             <p>&copy; 2026 Lic. Prof. Fernando Bisceglia. Todos los derechos reservados.</p>
             <p style="margin-top: 5px; font-size: 0.85rem;">Psicólogo Clínico</p>
         </div>
+
+        <!-- Contador de visitas secreto -->
+        <div id="admin-stats" style="display: none; margin-top: 20px; opacity: 0.8;">
+            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Ffernandobisceglia.com&count_bg=%236B8E6B&title_bg=%232C3E50&icon=&icon_color=%23E7E7E7&title=Visitas+totales&edge_flat=false" alt="Contador de visitas">
+        </div>
     </footer>
 
     <script>
+        // Animaciones de aparición
         const observer = new IntersectionObserver((entries) => {
             let delay = 0;
             entries.forEach(entry => {
@@ -607,6 +613,12 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.animar').forEach((el) => observer.observe(el));
+
+        // Lógica para mostrar estadísticas (solo si existe ?stats=true en la URL)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('stats') === 'true') {
+            document.getElementById('admin-stats').style.display = 'block';
+        }
     </script>
 </body>
 
