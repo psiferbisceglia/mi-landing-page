@@ -1,0 +1,366 @@
+---
+layout: base.njk
+title: "Chimp Test | Fernando Bisceglia"
+permalink: /chimp/
+---
+
+<style>
+    .chimp-container {
+        max-width: 1000px;
+        margin: 120px auto 60px;
+        padding: 40px 20px;
+        text-align: center;
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .chimp-header {
+        margin-bottom: 30px;
+    }
+
+    .chimp-header h1 {
+        font-size: 3rem;
+        color: var(--color-principal);
+        margin-bottom: 20px;
+        font-family: 'Lora', serif;
+    }
+
+    .chimp-intro {
+        background: white;
+        padding: 20px 30px;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        border-bottom: 3px solid var(--color-principal);
+        max-width: 700px;
+        line-height: 1.6;
+        color: #444;
+        font-style: italic;
+    }
+
+    .chimp-info-box {
+        max-width: 800px;
+        margin-top: 60px;
+        text-align: left;
+        background: rgba(107, 142, 107, 0.05);
+        padding: 40px;
+        border-radius: 30px;
+        border-left: 5px solid var(--color-principal);
+    }
+
+    .chimp-info-box h3 {
+        color: var(--color-principal);
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+    }
+
+    .chimp-info-box p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 15px;
+    }
+
+    .chimp-stats {
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--color-texto);
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .stat-item span {
+        color: var(--color-principal);
+        font-size: 1.5rem;
+    }
+
+    #lives-display {
+        color: #e74c3c; /* Color rojo para destacar las vidas restantes */
+    }
+
+    /* El tablero de juego */
+    .game-board {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        gap: 10px;
+        width: 100%;
+        max-width: 800px;
+        aspect-ratio: 9 / 5;
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 15px;
+        border: 1px solid rgba(107, 142, 107, 0.2);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        position: relative;
+    }
+
+    .cell {
+        background: transparent;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        user-select: none;
+        position: relative;
+        border: 1px solid transparent;
+    }
+
+    .cell.active {
+        background: white;
+        color: var(--color-principal);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        border-color: rgba(107, 142, 107, 0.1);
+    }
+
+    .cell.active:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .cell.hidden {
+        color: transparent;
+    }
+
+    .cell.clicked {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    /* Pantallas superpuestas */
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(249, 251, 249, 0.9);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        border-radius: 20px;
+        padding: 20px;
+    }
+
+    .overlay h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--color-texto);
+    }
+
+    .overlay p {
+        margin-bottom: 30px;
+        font-size: 1.2rem;
+        color: #555;
+    }
+
+    .hidden-overlay {
+        display: none;
+    }
+
+    /* Estilos para móviles */
+    @media (max-width: 768px) {
+        .game-board {
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(9, 1fr);
+            aspect-ratio: 5 / 9;
+        }
+
+        .cell {
+            font-size: 1.5rem;
+        }
+
+        .chimp-header h1 {
+            font-size: 2rem;
+        }
+    }
+</style>
+
+<div class="chimp-container">
+    <div class="chimp-header">
+        <h1>Chimp Test</h1>
+        <div class="chimp-intro">
+            Probá tu memoria de trabajo. Memoriza los números en orden ascendente. Al tocar el "1", los demás se ocultarán.
+        </div>
+    </div>
+
+    <div class="chimp-stats">
+        <div class="stat-item">Nivel: <span id="level-display">1</span></div>
+        <div class="stat-item">Números: <span id="numbers-display">4</span></div>
+        <div class="stat-item">Vidas: <span id="lives-display">3</span></div>
+    </div>
+
+    <div class="game-board" id="board">
+        <div class="overlay" id="start-overlay">
+            <h2>¿Listo?</h2>
+            <p>Haz clic en los números en orden ascendente (1, 2, 3...).</p>
+            <button class="btn" onclick="startGame()">Comenzar Test</button>
+        </div>
+
+        <div class="overlay hidden-overlay" id="fail-overlay">
+            <h2>¡Fin del Juego!</h2>
+            <p id="fail-message">Llegaste al nivel 1.</p>
+            <button class="btn" onclick="restartGame()">Intentar de nuevo</button>
+        </div>
+
+        <div class="overlay hidden-overlay" id="success-overlay">
+            <h2>¡Excelente!</h2>
+            <p>Próximo nivel: <span id="next-level-num">2</span></p>
+            <button class="btn" onclick="nextLevel()">Continuar</button>
+        </div>
+    </div>
+
+    <div class="chimp-info-box animar">
+        <h3>¿Sabías qué?</h3>
+        <p>
+            En el llamado <strong>“chimp test”</strong> (basado en experimentos de memoria de trabajo con números), los chimpancés, especialmente algunos entrenados, pueden recordar con mucha precisión la ubicación de números que aparecen brevemente en pantalla.
+        </p>
+        <p>
+            En condiciones experimentales, individuos como <strong>Ayumu</strong> (el caso más famoso) logran acertar prácticamente todos los números en secuencia (por ejemplo, 5 a 9 números) incluso cuando se ocultan tras apenas unas décimas de segundo.
+        </p>
+        <p>
+            En términos generales, un chimpancé bien entrenado puede alcanzar niveles de acierto cercanos al 80–100% en estas tareas, superando incluso a humanos adultos en velocidad y precisión en ciertas condiciones. Esto sugiere que poseen una <strong>memoria visual de corto plazo</strong> extraordinariamente eficiente, especialmente para información espacial y numérica presentada de forma rápida.
+        </p>
+    </div>
+</div>
+
+<script>
+    const board = document.getElementById('board');
+    const levelDisplay = document.getElementById('level-display');
+    const numbersDisplay = document.getElementById('numbers-display');
+    const livesDisplay = document.getElementById('lives-display');
+    const startOverlay = document.getElementById('start-overlay');
+    const failOverlay = document.getElementById('fail-overlay');
+    const successOverlay = document.getElementById('success-overlay');
+    const failMessage = document.getElementById('fail-message');
+    const nextLevelNum = document.getElementById('next-level-num');
+
+    let level = 1;
+    let numCount = 4;
+    let nextExpected = 1;
+    let lives = 3;
+    let isHidden = false;
+    let cells = [];
+
+    const TOTAL_CELLS = 45;
+
+    function initBoard() {
+        const overlays = board.querySelectorAll('.overlay');
+        board.innerHTML = '';
+        overlays.forEach(o => board.appendChild(o));
+
+        cells = [];
+        for (let i = 0; i < TOTAL_CELLS; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'cell';
+            board.appendChild(cell);
+            cells.push(cell);
+        }
+    }
+
+    function startGame() {
+        level = 1;
+        numCount = 4;
+        lives = 3;
+        livesDisplay.textContent = lives;
+        startOverlay.classList.add('hidden-overlay');
+        setupLevel();
+    }
+
+    function restartGame() {
+        failOverlay.classList.add('hidden-overlay');
+        startGame();
+    }
+
+    function nextLevel() {
+        successOverlay.classList.add('hidden-overlay');
+        setupLevel();
+    }
+
+    function setupLevel() {
+        initBoard();
+        nextExpected = 1;
+        isHidden = false;
+        levelDisplay.textContent = level;
+        numbersDisplay.textContent = numCount;
+
+        const positions = [];
+        while (positions.length < numCount) {
+            const r = Math.floor(Math.random() * TOTAL_CELLS);
+            if (!positions.includes(r)) positions.push(r);
+        }
+
+        positions.forEach((pos, index) => {
+            const num = index + 1;
+            const cell = cells[pos];
+            cell.textContent = num;
+            cell.classList.add('active');
+            cell.onclick = () => handleCellClick(cell, num);
+        });
+    }
+
+    function handleCellClick(cell, num) {
+        if (num === nextExpected) {
+            cell.classList.add('clicked');
+            
+            if (num === 1) {
+                hideAllNumbers();
+            }
+
+            if (nextExpected === numCount) {
+                winLevel();
+            } else {
+                nextExpected++;
+            }
+        } else {
+            handleMistake();
+        }
+    }
+
+    function handleMistake() {
+        lives--;
+        livesDisplay.textContent = lives;
+        
+        if (lives > 0) {
+            // Mostrar los números de nuevo brevemente y reiniciar el intento del nivel
+            alert("¡Error! Perdiste una vida. Volvé a intentarlo.");
+            setupLevel(); // Reinicia el nivel actual
+        } else {
+            loseGame();
+        }
+    }
+
+    function hideAllNumbers() {
+        isHidden = true;
+        cells.forEach(cell => {
+            if (cell.classList.contains('active')) {
+                cell.classList.add('hidden');
+            }
+        });
+    }
+
+    function winLevel() {
+        level++;
+        numCount++;
+        nextLevelNum.textContent = level;
+        successOverlay.classList.remove('hidden-overlay');
+    }
+
+    function loseGame() {
+        failMessage.textContent = `Lograste completar ${level - 1} niveles con ${numCount - 1} números.`;
+        failOverlay.classList.remove('hidden-overlay');
+    }
+
+    initBoard();
+</script>
