@@ -627,17 +627,17 @@
                 statsPanel.style.display = 'block';
                 
                 try {
-                    // Usamos CounterAPI para obtener un conteo real via JSON
-                    const response = await fetch('https://api.counterapi.dev/v1/fernando-bisceglia/landing/up');
+                    // Usamos Abacus API para obtener un conteo real via JSON
+                    const response = await fetch('https://abacus.jasoncameron.dev/hit/psiferbisceglia/landing');
                     const data = await response.json();
-                    document.getElementById('visit-count').innerText = data.count.toLocaleString();
+                    document.getElementById('visit-count').innerText = data.value.toLocaleString();
                 } catch (error) {
                     console.error('Error al cargar stats:', error);
                     document.getElementById('visit-count').innerText = 'Error';
                 }
             } else {
                 // Registrar visita de forma silenciosa si no estamos en modo stats
-                fetch('https://api.counterapi.dev/v1/fernando-bisceglia/landing/up').catch(() => {});
+                fetch('https://abacus.jasoncameron.dev/hit/psiferbisceglia/landing').catch(() => {});
             }
         }
         
