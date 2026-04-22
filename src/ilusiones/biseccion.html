@@ -1,7 +1,8 @@
 ---
 layout: base.njk
-title: "Ilusión de la Bisección - Fernando Bisceglia"
-description: "Explora la ilusión vertical-horizontal: ¿por qué la línea vertical parece más larga que la horizontal aunque midan lo mismo?"
+title: "Ilusión de la Bisección"
+description: "Explora la ilusión vertical-horizontal: ¿por qué la línea vertical parece más larga que la horizontal
+aunque midan lo mismo?"
 image: "img/biseccion-preview.png"
 ---
 
@@ -35,7 +36,7 @@ image: "img/biseccion-preview.png"
                 <label for="slider-vertical">Largo Línea Vertical</label>
                 <input type="range" id="slider-vertical" min="50" max="400" value="250">
             </div>
-            
+
             <div class="botones-acciones">
                 <button id="btn-revelar" class="btn">Girar para comparar <i class="fa-solid fa-sync"></i></button>
                 <button id="btn-igualar" class="btn btn-secundario">Reiniciar (Igualar)</button>
@@ -46,16 +47,20 @@ image: "img/biseccion-preview.png"
     <section class="explicacion animar">
         <h2>¿Qué está pasando?</h2>
         <p>
-            Esta es una de las ilusiones ópticas más clásicas. A pesar de que ambas líneas tienen exactamente la misma longitud, la línea vertical suele percibirse entre un <strong>15% y un 20% más larga</strong> que la horizontal.
+            Esta es una de las ilusiones ópticas más clásicas. A pesar de que ambas líneas tienen exactamente la misma
+            longitud, la línea vertical suele percibirse entre un <strong>15% y un 20% más larga</strong> que la
+            horizontal.
         </p>
         <div class="explicacion-grid">
             <div class="explicacion-card">
                 <h3>Esfuerzo Ocular</h3>
-                <p>Una teoría sugiere que mover los ojos de forma vertical requiere más esfuerzo muscular que moverlos de forma horizontal, y nuestro cerebro interpreta ese esfuerzo extra como una mayor distancia.</p>
+                <p>Una teoría sugiere que mover los ojos de forma vertical requiere más esfuerzo muscular que moverlos
+                    de forma horizontal, y nuestro cerebro interpreta ese esfuerzo extra como una mayor distancia.</p>
             </div>
             <div class="explicacion-card">
                 <h3>Perspectiva</h3>
-                <p>Nuestro sistema visual interpreta las líneas verticales como alejándose de nosotros en el espacio (como el camino hacia el horizonte), por lo que compensa el tamaño percibido.</p>
+                <p>Nuestro sistema visual interpreta las líneas verticales como alejándose de nosotros en el espacio
+                    (como el camino hacia el horizonte), por lo que compensa el tamaño percibido.</p>
             </div>
         </div>
     </section>
@@ -115,7 +120,7 @@ image: "img/biseccion-preview.png"
         background: white;
         border-radius: 30px;
         padding: 20px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -159,9 +164,10 @@ image: "img/biseccion-preview.png"
         position: absolute;
         transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1), background 0.7s ease, box-shadow 0.7s ease, opacity 0.7s ease;
         border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         cursor: grab;
-        touch-action: none; /* Previene scroll mientras se arrastra */
+        touch-action: none;
+        /* Previene scroll mientras se arrastra */
     }
 
     .linea:active {
@@ -176,7 +182,7 @@ image: "img/biseccion-preview.png"
         left: 50%;
         top: 50%;
     }
-    
+
     #linea-vertical {
         width: 8px;
         height: 250px;
@@ -270,7 +276,7 @@ image: "img/biseccion-preview.png"
         text-align: center;
     }
 
-    .explicacion > p {
+    .explicacion>p {
         font-size: 1.15rem;
         line-height: 1.8;
         color: #444;
@@ -289,8 +295,8 @@ image: "img/biseccion-preview.png"
         background: white;
         padding: 30px;
         border-radius: 24px;
-        border: 1px solid rgba(0,0,0,0.05);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
     }
 
     .explicacion-card h3 {
@@ -303,10 +309,12 @@ image: "img/biseccion-preview.png"
         .controles {
             grid-template-columns: 1fr;
         }
+
         .botones-acciones {
             grid-column: 1;
             flex-direction: column;
         }
+
         .explicacion-grid {
             grid-template-columns: 1fr;
         }
@@ -324,7 +332,7 @@ image: "img/biseccion-preview.png"
         const btnIgualar = document.getElementById('btn-igualar');
 
         let isRevelado = false;
-        
+
         // Estado del arrastre
         const dragOffsets = {
             'linea-horizontal': { x: 0, y: 0 },
@@ -337,7 +345,7 @@ image: "img/biseccion-preview.png"
             const id = el.id;
             const offset = dragOffsets[id];
             const vHeight = parseInt(sliderV.value);
-            
+
             // Para centrar el conjunto "T", el punto de unión debe estar vHeight/2 debajo del centro del canvas
             const jointY = isRevelado ? 0 : (vHeight / 2);
 
@@ -356,10 +364,10 @@ image: "img/biseccion-preview.png"
         function actualizar() {
             const valH = sliderH.value;
             const valV = sliderV.value;
-            
+
             lineaH.style.width = valH + 'px';
             lineaV.style.height = valV + 'px';
-            
+
             updateElementTransform(lineaH);
             updateElementTransform(lineaV);
         }
@@ -368,16 +376,16 @@ image: "img/biseccion-preview.png"
         function startDrag(e) {
             const el = e.target.closest('.linea');
             if (!el) return;
-            
+
             draggingElement = el;
             const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
             const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
-            
+
             startPos = {
                 x: clientX - dragOffsets[el.id].x,
                 y: clientY - dragOffsets[el.id].y
             };
-            
+
             el.style.transition = 'none';
             el.style.zIndex = 100;
             document.body.style.userSelect = 'none';
@@ -385,19 +393,19 @@ image: "img/biseccion-preview.png"
 
         function doDrag(e) {
             if (!draggingElement) return;
-            
+
             const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
             const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
-            
+
             dragOffsets[draggingElement.id].x = clientX - startPos.x;
             dragOffsets[draggingElement.id].y = clientY - startPos.y;
-            
+
             updateElementTransform(draggingElement);
         }
 
         function stopDrag() {
             if (!draggingElement) return;
-            
+
             draggingElement.style.transition = 'transform 0.7s cubic-bezier(0.65, 0, 0.35, 1), background 0.7s ease, box-shadow 0.7s ease, opacity 0.7s ease';
             draggingElement.style.zIndex = (draggingElement.id === 'linea-vertical') ? 2 : 1;
             draggingElement = null;
@@ -408,7 +416,7 @@ image: "img/biseccion-preview.png"
         window.addEventListener('mousedown', startDrag);
         window.addEventListener('mousemove', doDrag);
         window.addEventListener('mouseup', stopDrag);
-        
+
         window.addEventListener('touchstart', startDrag, { passive: false });
         window.addEventListener('touchmove', doDrag, { passive: false });
         window.addEventListener('touchend', stopDrag);
@@ -418,7 +426,7 @@ image: "img/biseccion-preview.png"
 
         btnRevelar.addEventListener('click', () => {
             isRevelado = !isRevelado;
-            
+
             if (isRevelado) {
                 canvas.classList.add('revelado');
                 btnRevelar.innerHTML = 'Restaurar <i class="fa-solid fa-undo"></i>';
@@ -430,7 +438,7 @@ image: "img/biseccion-preview.png"
                 sliderH.disabled = false;
                 sliderV.disabled = false;
             }
-            
+
             updateElementTransform(lineaV);
             updateElementTransform(lineaH);
         });
@@ -441,10 +449,10 @@ image: "img/biseccion-preview.png"
             btnRevelar.innerHTML = 'Girar para comparar <i class="fa-solid fa-sync"></i>';
             sliderH.disabled = false;
             sliderV.disabled = false;
-            
+
             dragOffsets['linea-horizontal'] = { x: 0, y: 0 };
             dragOffsets['linea-vertical'] = { x: 0, y: 0 };
-            
+
             sliderH.value = 250;
             sliderV.value = 250;
             actualizar();
@@ -454,4 +462,3 @@ image: "img/biseccion-preview.png"
         actualizar();
     });
 </script>
-
