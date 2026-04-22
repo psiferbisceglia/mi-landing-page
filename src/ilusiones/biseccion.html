@@ -53,14 +53,27 @@ image: "img/biseccion-preview.png"
         </p>
         <div class="explicacion-grid">
             <div class="explicacion-card">
-                <h3>Esfuerzo Ocular</h3>
-                <p>Una teoría sugiere que mover los ojos de forma vertical requiere más esfuerzo muscular que moverlos
-                    de forma horizontal, y nuestro cerebro interpreta ese esfuerzo extra como una mayor distancia.</p>
+                <div class="card-icon">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <h3>El marco del campo visual</h3>
+                <p>Nuestros ojos tienen un campo visual más ancho que alto, como una pantalla de cine en horizontal. El
+                    cerebro usa ese marco como referencia para estimar distancias. Como la línea vertical se acerca más
+                    a los bordes "cortos" del campo, el cerebro la percibe como más larga de lo que es. A esto se suma
+                    que, en la figura en T, la línea horizontal está dividida en dos mitades, lo que la hace parecer
+                    todavía más corta.</p>
             </div>
             <div class="explicacion-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-road"></i>
+                </div>
                 <h3>Perspectiva</h3>
-                <p>Nuestro sistema visual interpreta las líneas verticales como alejándose de nosotros en el espacio
-                    (como el camino hacia el horizonte), por lo que compensa el tamaño percibido.</p>
+                <p>El cerebro no ve el mundo en 2D: constantemente interpreta las imágenes como si tuvieran profundidad.
+                    Una línea vertical se procesa como si se alejara hacia el horizonte, como una ruta vista de frente.
+                    Ante esa señal de perspectiva, el cerebro aplica una corrección automática y "agranda" lo que cree
+                    que está más lejos, para compensar. El problema es que en una pantalla plana no hay nada que
+                    compensar. La corrección se aplica igual, y la línea vertical termina pareciendo más larga de lo que
+                    realmente es.</p>
             </div>
         </div>
     </section>
@@ -293,16 +306,51 @@ image: "img/biseccion-preview.png"
 
     .explicacion-card {
         background: white;
-        padding: 30px;
-        border-radius: 24px;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        padding: 40px 30px;
+        border-radius: 30px;
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .explicacion-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        border-color: var(--color-principal);
+    }
+
+    .card-icon {
+        width: 64px;
+        height: 64px;
+        background: var(--color-secundario);
+        color: var(--color-principal);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        font-size: 1.6rem;
+        transition: all 0.4s ease;
+    }
+
+    .explicacion-card:hover .card-icon {
+        background: var(--color-principal);
+        color: white;
+        transform: scale(1.1);
     }
 
     .explicacion-card h3 {
         color: var(--color-principal);
         margin-bottom: 15px;
-        font-size: 1.3rem;
+        font-size: 1.4rem;
+        font-weight: 800;
+    }
+
+    .explicacion-card p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #555;
     }
 
     @media (max-width: 768px) {

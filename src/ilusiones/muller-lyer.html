@@ -1,0 +1,520 @@
+---
+layout: base.njk
+title: "Ilusión de Müller-Lyer"
+description: "Explora la ilusión de Müller-Lyer: ¿por qué dos líneas del mismo tamaño parecen tener longitudes distintas según sus extremos?"
+image: "img/muller-lyer-preview.png"
+---
+
+<div class="ilusion-detalle-container">
+    <div class="retroceso">
+        <a href="/ilusiones/"><i class="fa-solid fa-arrow-left"></i> Volver a Ilusiones</a>
+    </div>
+
+    <header class="ilusion-header animar">
+        <h1>Ilusión de Müller-Lyer</h1>
+        <p class="subtitulo">El poder de las flechas y la percepción de profundidad</p>
+    </header>
+
+    <section class="interactivo-seccion animar">
+        <div class="canvas-contenedor">
+            <div id="ilusion-canvas">
+                <!-- Línea con puntas hacia afuera (se ve más larga) -->
+                <div id="segmento-a" class="segmento-contenedor">
+                    <svg class="segmento-svg" width="500" height="100" viewBox="0 0 500 100">
+                        <line class="main-line" y1="50" y2="50"></line>
+                        <path class="arrow-puntas punta-izq"></path>
+                        <path class="arrow-puntas punta-der"></path>
+                    </svg>
+                </div>
+                <!-- Línea con puntas hacia adentro (se ve más corta) -->
+                <div id="segmento-b" class="segmento-contenedor">
+                    <svg class="segmento-svg" width="500" height="100" viewBox="0 0 500 100">
+                        <line class="main-line" y1="50" y2="50"></line>
+                        <path class="arrow-puntas punta-izq"></path>
+                        <path class="arrow-puntas punta-der"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="guias-revelacion">
+                <div class="guia-linea guia-izq"></div>
+                <div class="guia-linea guia-der"></div>
+            </div>
+
+            <div class="drag-hint animar">
+                <i class="fa-solid fa-hand-pointer"></i> Puedes arrastrar las líneas para compararlas
+            </div>
+        </div>
+
+        <div class="controles">
+            <div class="control-grupo">
+                <label for="slider-a">Tamaño Puntas Superior</label>
+                <input type="range" id="slider-a" min="0" max="80" value="30">
+            </div>
+            <div class="control-grupo">
+                <label for="slider-b">Tamaño Puntas Inferior</label>
+                <input type="range" id="slider-b" min="0" max="80" value="30">
+            </div>
+
+            <div class="botones-acciones">
+                <button id="btn-revelar" class="btn">Mostrar Guías <i class="fa-solid fa-eye"></i></button>
+                <button id="btn-igualar" class="btn btn-secundario">Reiniciar (Igualar)</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="explicacion animar">
+        <h2>¿Qué está pasando?</h2>
+        <p>
+            En la ilusión de Müller-Lyer, percibimos que la línea con las puntas hacia adentro (flechas convexas) es más corta que la línea con las puntas hacia afuera (flechas cóncavas), aunque sus segmentos centrales midan exactamente lo mismo.
+        </p>
+        <div class="explicacion-grid">
+            <div class="explicacion-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-cube"></i>
+                </div>
+                <h3>Teoría de las Esquinas</h3>
+                <p>Nuestro cerebro interpreta las flechas como pistas de profundidad en un mundo 3D. Las puntas hacia afuera sugieren una esquina convexa (como el borde de un edificio), mientras que las puntas hacia adentro sugieren una esquina cóncava (como el rincón de una habitación).</p>
+            </div>
+            <div class="explicacion-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-shapes"></i>
+                </div>
+                <h3>Procesamiento Global</h3>
+                <p>El sistema visual no procesa la línea central de forma aislada: la ve como parte de una figura completa. Y esa figura completa tiene distinto tamaño según hacia dónde apunten las flechas. Cuando las puntas miran hacia afuera, el objeto total ocupa más espacio en el campo visual; cuando miran hacia adentro, ocupa menos. El cerebro toma ese "tamaño global" como referencia y lo proyecta sobre la línea central, distorsionando su longitud percibida. Esta explicación tiene la ventaja de funcionar incluso cuando las flechas se reemplazan por cuadrados, puntos u otras formas: la ilusión persiste porque el mecanismo no depende de las flechas en sí, sino de cómo el cerebro integra el conjunto.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    .ilusion-detalle-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 150px 20px 40px;
+    }
+
+    .ilusion-detalle-container section {
+        min-height: auto;
+        padding: 0;
+        display: block;
+    }
+
+    .retroceso {
+        margin-bottom: 10px;
+    }
+
+    .retroceso a {
+        color: var(--color-principal);
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .retroceso a:hover {
+        transform: translateX(-5px);
+    }
+
+    .ilusion-header {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .ilusion-header h1 {
+        font-size: 3rem;
+        color: var(--color-principal);
+        margin-bottom: 10px;
+    }
+
+    .subtitulo {
+        font-size: 1.2rem;
+        color: #666;
+        font-style: italic;
+    }
+
+    /* Canvas */
+    .canvas-contenedor {
+        background: white;
+        border-radius: 30px;
+        padding: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+        min-height: 500px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .segmento-svg {
+        overflow: visible;
+        display: block;
+    }
+
+    .main-line, .arrow-puntas {
+        stroke: #1a1a1a;
+        stroke-width: 6;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition: stroke 0.5s ease, opacity 0.5s ease;
+    }
+
+    /* Revelación */
+    .revelado .main-line {
+        stroke: var(--color-principal);
+    }
+    .revelado .arrow-puntas {
+        stroke: var(--color-principal);
+        opacity: 0.3;
+    }
+
+    .guias-revelacion {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .revelado .guias-revelacion {
+        opacity: 1;
+    }
+
+    .guia-linea {
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        background: rgba(107, 142, 107, 0.3);
+        border-style: dashed;
+        border-width: 0 0 0 2px;
+        top: 0;
+    }
+
+    .drag-hint {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.85rem;
+        color: #999;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        opacity: 0.8;
+        pointer-events: none;
+    }
+
+    /* Controles */
+    .controles {
+        background: var(--color-secundario);
+        padding: 40px;
+        border-radius: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        align-items: center;
+    }
+
+    .control-grupo {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .control-grupo label {
+        font-weight: 700;
+        color: var(--color-principal);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    input[type="range"] {
+        appearance: none;
+        background: rgba(107, 142, 107, 0.2);
+        height: 8px;
+        border-radius: 10px;
+        outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        width: 24px;
+        height: 24px;
+        background: var(--color-principal);
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(107, 142, 107, 0.3);
+        transition: transform 0.2s;
+    }
+
+    .botones-acciones {
+        grid-column: span 2;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 10px;
+    }
+
+    #btn-revelar {
+        min-width: 220px;
+    }
+
+    .btn-secundario {
+        background-color: transparent;
+        color: var(--color-principal);
+        border: 2px solid var(--color-principal);
+    }
+
+    /* Explicación */
+    .explicacion {
+        margin-top: 40px;
+    }
+
+    .explicacion h2 {
+        font-size: 2.2rem;
+        color: var(--color-principal);
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .explicacion > p {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: #444;
+        max-width: 800px;
+        margin: 0 auto 20px;
+        text-align: center;
+    }
+
+    .explicacion-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .explicacion-card {
+        background: white;
+        padding: 40px 30px;
+        border-radius: 30px;
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .explicacion-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        border-color: var(--color-principal);
+    }
+
+    .card-icon {
+        width: 64px;
+        height: 64px;
+        background: var(--color-secundario);
+        color: var(--color-principal);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        font-size: 1.6rem;
+        transition: all 0.4s ease;
+    }
+
+    .explicacion-card:hover .card-icon {
+        background: var(--color-principal);
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .explicacion-card h3 {
+        color: var(--color-principal);
+        margin-bottom: 15px;
+        font-size: 1.4rem;
+        font-weight: 800;
+    }
+
+    .explicacion-card p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #555;
+    }
+
+    @media (max-width: 768px) {
+        .controles {
+            grid-template-columns: 1fr;
+        }
+        .botones-acciones {
+            grid-column: 1;
+            flex-direction: column;
+        }
+        .explicacion-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const canvasContainer = document.querySelector('.canvas-contenedor');
+        const segmentoA = document.getElementById('segmento-a');
+        const segmentoB = document.getElementById('segmento-b');
+        const sliderA = document.getElementById('slider-a');
+        const sliderB = document.getElementById('slider-b');
+        const btnRevelar = document.getElementById('btn-revelar');
+        const btnIgualar = document.getElementById('btn-igualar');
+        const guiaIzq = document.querySelector('.guia-izq');
+        const guiaDer = document.querySelector('.guia-der');
+
+        let isRevelado = false;
+
+        // Estado de arrastre
+        const dragOffsets = {
+            'segmento-a': { x: 0, y: 0 },
+            'segmento-b': { x: 0, y: 0 }
+        };
+        let draggingElement = null;
+        let startPos = { x: 0, y: 0 };
+
+        function updateSegment(id, arrowSize) {
+            const length = 250; // Largo fijo para demostrar la ilusión
+            const svg = document.querySelector(`#${id} .segmento-svg`);
+            const line = svg.querySelector('.main-line');
+            const pIzq = svg.querySelector('.punta-izq');
+            const pDer = svg.querySelector('.punta-der');
+            
+            const startX = (500 - length) / 2;
+            const endX = startX + length;
+            const midY = 50;
+
+            line.setAttribute('x1', startX);
+            line.setAttribute('x2', endX);
+
+            const offset = parseInt(arrowSize);
+            const spread = offset * 0.7; // Mantener proporción estética
+
+            if (id === 'segmento-a') {
+                // Outward (>---<) - Se ve más larga
+                pIzq.setAttribute('d', `M ${startX - offset} ${midY - spread} L ${startX} ${midY} L ${startX - offset} ${midY + spread}`);
+                pDer.setAttribute('d', `M ${endX + offset} ${midY - spread} L ${endX} ${midY} L ${endX + offset} ${midY + spread}`);
+            } else {
+                // Inward (<--->) - Se ve más corta
+                pIzq.setAttribute('d', `M ${startX + offset} ${midY - spread} L ${startX} ${midY} L ${startX + offset} ${midY + spread}`);
+                pDer.setAttribute('d', `M ${endX - offset} ${midY - spread} L ${endX} ${midY} L ${endX - offset} ${midY + spread}`);
+            }
+        }
+
+        function updateTransforms() {
+            const valA = parseInt(sliderA.value);
+            const valB = parseInt(sliderB.value);
+
+            updateSegment('segmento-a', valA);
+            updateSegment('segmento-b', valB);
+
+            segmentoA.style.transform = `translate(${dragOffsets['segmento-a'].x}px, ${dragOffsets['segmento-a'].y}px)`;
+            segmentoB.style.transform = `translate(${dragOffsets['segmento-b'].x}px, ${dragOffsets['segmento-b'].y}px)`;
+
+            // Actualizar guías si está revelado basándose en Segmento A
+            const svgARect = segmentoA.querySelector('.segmento-svg').getBoundingClientRect();
+            const canvasRect = canvasContainer.getBoundingClientRect();
+            
+            const fixedLength = 250;
+            const startXA = (500 - fixedLength) / 2;
+            
+            // Calculamos la posición real del inicio y fin de la línea en el canvas
+            const scale = svgARect.width / 500;
+            const lineLeft = svgARect.left - canvasRect.left + (startXA * scale);
+            const lineRight = lineLeft + (fixedLength * scale);
+
+            guiaIzq.style.left = lineLeft + 'px';
+            guiaDer.style.left = lineRight + 'px';
+        }
+
+        // Eventos de arrastre
+        function startDrag(e) {
+            const el = e.target.closest('.segmento-contenedor');
+            if (!el) return;
+
+            draggingElement = el;
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+
+            startPos = {
+                x: clientX - dragOffsets[el.id].x,
+                y: clientY - dragOffsets[el.id].y
+            };
+
+            el.style.transition = 'none';
+            el.style.zIndex = 100;
+            document.body.style.userSelect = 'none';
+        }
+
+        function doDrag(e) {
+            if (!draggingElement) return;
+
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+
+            dragOffsets[draggingElement.id].x = clientX - startPos.x;
+            dragOffsets[draggingElement.id].y = clientY - startPos.y;
+
+            updateTransforms();
+        }
+
+        function stopDrag() {
+            if (!draggingElement) return;
+
+            draggingElement.style.transition = 'transform 0.7s cubic-bezier(0.65, 0, 0.35, 1)';
+            draggingElement.style.zIndex = 5;
+            draggingElement = null;
+            document.body.style.userSelect = '';
+        }
+
+        // Listeners
+        window.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', doDrag);
+        window.addEventListener('mouseup', stopDrag);
+        window.addEventListener('touchstart', startDrag, { passive: false });
+        window.addEventListener('touchmove', doDrag, { passive: false });
+        window.addEventListener('touchend', stopDrag);
+
+        sliderA.addEventListener('input', updateTransforms);
+        sliderB.addEventListener('input', updateTransforms);
+
+        btnRevelar.addEventListener('click', () => {
+            isRevelado = !isRevelado;
+            if (isRevelado) {
+                canvasContainer.classList.add('revelado');
+                btnRevelar.innerHTML = 'Ocultar Guías <i class="fa-solid fa-eye-slash"></i>';
+            } else {
+                canvasContainer.classList.remove('revelado');
+                btnRevelar.innerHTML = 'Mostrar Guías <i class="fa-solid fa-eye"></i>';
+            }
+            updateTransforms();
+        });
+
+        btnIgualar.addEventListener('click', () => {
+            dragOffsets['segmento-a'] = { x: 0, y: 0 };
+            dragOffsets['segmento-b'] = { x: 0, y: 0 };
+            sliderA.value = 30;
+            sliderB.value = 30;
+            isRevelado = false;
+            canvasContainer.classList.remove('revelado');
+            btnRevelar.innerHTML = 'Mostrar Guías <i class="fa-solid fa-eye"></i>';
+            updateTransforms();
+        });
+
+        // Inicializar
+        updateTransforms();
+    });
+</script>
