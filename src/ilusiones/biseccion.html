@@ -1,0 +1,457 @@
+---
+layout: base.njk
+title: "Ilusión de la Bisección - Fernando Bisceglia"
+description: "Explora la ilusión vertical-horizontal: ¿por qué la línea vertical parece más larga que la horizontal aunque midan lo mismo?"
+image: "img/biseccion-preview.png"
+---
+
+<div class="ilusion-detalle-container">
+    <div class="retroceso">
+        <a href="/ilusiones/"><i class="fa-solid fa-arrow-left"></i> Volver a Ilusiones</a>
+    </div>
+
+    <header class="ilusion-header animar">
+        <h1>Ilusión de la Bisección</h1>
+        <p class="subtitulo">También conocida como ilusión Vertical-Horizontal</p>
+    </header>
+
+    <section class="interactivo-seccion animar">
+        <div class="canvas-contenedor">
+            <div id="ilusion-canvas">
+                <div id="linea-horizontal" class="linea"></div>
+                <div id="linea-vertical" class="linea"></div>
+            </div>
+            <div class="drag-hint animar">
+                <i class="fa-solid fa-hand-pointer"></i> Puedes arrastrar las líneas para compararlas
+            </div>
+        </div>
+
+        <div class="controles">
+            <div class="control-grupo">
+                <label for="slider-horizontal">Largo Línea Horizontal</label>
+                <input type="range" id="slider-horizontal" min="50" max="400" value="250">
+            </div>
+            <div class="control-grupo">
+                <label for="slider-vertical">Largo Línea Vertical</label>
+                <input type="range" id="slider-vertical" min="50" max="400" value="250">
+            </div>
+            
+            <div class="botones-acciones">
+                <button id="btn-revelar" class="btn">Girar para comparar <i class="fa-solid fa-sync"></i></button>
+                <button id="btn-igualar" class="btn btn-secundario">Reiniciar (Igualar)</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="explicacion animar">
+        <h2>¿Qué está pasando?</h2>
+        <p>
+            Esta es una de las ilusiones ópticas más clásicas. A pesar de que ambas líneas tienen exactamente la misma longitud, la línea vertical suele percibirse entre un <strong>15% y un 20% más larga</strong> que la horizontal.
+        </p>
+        <div class="explicacion-grid">
+            <div class="explicacion-card">
+                <h3>Esfuerzo Ocular</h3>
+                <p>Una teoría sugiere que mover los ojos de forma vertical requiere más esfuerzo muscular que moverlos de forma horizontal, y nuestro cerebro interpreta ese esfuerzo extra como una mayor distancia.</p>
+            </div>
+            <div class="explicacion-card">
+                <h3>Perspectiva</h3>
+                <p>Nuestro sistema visual interpreta las líneas verticales como alejándose de nosotros en el espacio (como el camino hacia el horizonte), por lo que compensa el tamaño percibido.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    .ilusion-detalle-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 150px 20px 40px;
+    }
+
+    /* Override global section styles for this page */
+    .ilusion-detalle-container section {
+        min-height: auto;
+        padding: 0;
+        display: block;
+    }
+
+    .retroceso {
+        margin-bottom: 10px;
+    }
+
+    .retroceso a {
+        color: var(--color-principal);
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .retroceso a:hover {
+        transform: translateX(-5px);
+    }
+
+    .ilusion-header {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .ilusion-header h1 {
+        font-size: 3rem;
+        color: var(--color-principal);
+        margin-bottom: 10px;
+    }
+
+    .subtitulo {
+        font-size: 1.2rem;
+        color: #666;
+        font-style: italic;
+    }
+
+    /* Canvas de la ilusión */
+    .canvas-contenedor {
+        background: white;
+        border-radius: 30px;
+        padding: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+        min-height: 500px;
+        position: relative;
+        overflow: hidden;
+        flex-direction: column;
+    }
+
+    .drag-hint {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.85rem;
+        color: #999;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        opacity: 0.8;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .canvas-contenedor:hover .drag-hint {
+        opacity: 1;
+    }
+
+    #ilusion-canvas {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .linea {
+        background: #1a1a1a;
+        position: absolute;
+        transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1), background 0.7s ease, box-shadow 0.7s ease, opacity 0.7s ease;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        cursor: grab;
+        touch-action: none; /* Previene scroll mientras se arrastra */
+    }
+
+    .linea:active {
+        cursor: grabbing;
+        transition: background 0.7s ease, box-shadow 0.7s ease, opacity 0.7s ease;
+    }
+
+    #linea-horizontal {
+        height: 8px;
+        width: 250px;
+        z-index: 1;
+        left: 50%;
+        top: 50%;
+    }
+    
+    #linea-vertical {
+        width: 8px;
+        height: 250px;
+        z-index: 2;
+        left: 50%;
+        top: 50%;
+        transform-origin: bottom center;
+    }
+
+    /* Clase para la animación de revelación */
+    .revelado #linea-vertical {
+        background: var(--color-principal);
+        box-shadow: 0 5px 15px rgba(107, 142, 107, 0.4);
+    }
+
+    .revelado #linea-horizontal {
+        opacity: 0.3;
+    }
+
+    /* Controles */
+    .controles {
+        background: var(--color-secundario);
+        padding: 40px;
+        border-radius: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        align-items: center;
+    }
+
+    .control-grupo {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .control-grupo label {
+        font-weight: 700;
+        color: var(--color-principal);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    input[type="range"] {
+        appearance: none;
+        background: rgba(107, 142, 107, 0.2);
+        height: 8px;
+        border-radius: 10px;
+        outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        width: 24px;
+        height: 24px;
+        background: var(--color-principal);
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(107, 142, 107, 0.3);
+        transition: transform 0.2s;
+    }
+
+    .botones-acciones {
+        grid-column: span 2;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 10px;
+    }
+
+    #btn-revelar {
+        min-width: 220px;
+    }
+
+    .btn-secundario {
+        background-color: transparent;
+        color: var(--color-principal);
+        border: 2px solid var(--color-principal);
+    }
+
+    /* Explicación */
+    .explicacion {
+        margin-top: 40px;
+    }
+
+    .explicacion h2 {
+        font-size: 2.2rem;
+        color: var(--color-principal);
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .explicacion > p {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: #444;
+        max-width: 800px;
+        margin: 0 auto 20px;
+        text-align: center;
+    }
+
+    .explicacion-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .explicacion-card {
+        background: white;
+        padding: 30px;
+        border-radius: 24px;
+        border: 1px solid rgba(0,0,0,0.05);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    }
+
+    .explicacion-card h3 {
+        color: var(--color-principal);
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+    }
+
+    @media (max-width: 768px) {
+        .controles {
+            grid-template-columns: 1fr;
+        }
+        .botones-acciones {
+            grid-column: 1;
+            flex-direction: column;
+        }
+        .explicacion-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const canvas = document.querySelector('.canvas-contenedor');
+        const lineaH = document.getElementById('linea-horizontal');
+        const lineaV = document.getElementById('linea-vertical');
+        const sliderH = document.getElementById('slider-horizontal');
+        const sliderV = document.getElementById('slider-vertical');
+        const btnRevelar = document.getElementById('btn-revelar');
+        const btnIgualar = document.getElementById('btn-igualar');
+
+        let isRevelado = false;
+        
+        // Estado del arrastre
+        const dragOffsets = {
+            'linea-horizontal': { x: 0, y: 0 },
+            'linea-vertical': { x: 0, y: 0 }
+        };
+        let draggingElement = null;
+        let startPos = { x: 0, y: 0 };
+
+        function updateElementTransform(el) {
+            const id = el.id;
+            const offset = dragOffsets[id];
+            const vHeight = parseInt(sliderV.value);
+            
+            // Para centrar el conjunto "T", el punto de unión debe estar vHeight/2 debajo del centro del canvas
+            const jointY = isRevelado ? 0 : (vHeight / 2);
+
+            if (id === 'linea-vertical') {
+                const revealY = isRevelado ? (vHeight / 2) : 0;
+                const rotation = isRevelado ? 'rotate(90deg)' : 'rotate(0deg)';
+                // -50% en X para centrar horizontalmente
+                // -100% en Y para que el fondo de la línea (su base) coincida con el punto de anclaje
+                el.style.transform = `translate(calc(-50% + ${offset.x}px), calc(-100% + ${offset.y + jointY + revealY}px)) ${rotation}`;
+            } else {
+                // -50% en Y para que el centro de la línea horizontal coincida con el punto de anclaje
+                el.style.transform = `translate(calc(-50% + ${offset.x}px), calc(-50% + ${offset.y + jointY}px))`;
+            }
+        }
+
+        function actualizar() {
+            const valH = sliderH.value;
+            const valV = sliderV.value;
+            
+            lineaH.style.width = valH + 'px';
+            lineaV.style.height = valV + 'px';
+            
+            updateElementTransform(lineaH);
+            updateElementTransform(lineaV);
+        }
+
+        // Eventos de arrastre
+        function startDrag(e) {
+            const el = e.target.closest('.linea');
+            if (!el) return;
+            
+            draggingElement = el;
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+            
+            startPos = {
+                x: clientX - dragOffsets[el.id].x,
+                y: clientY - dragOffsets[el.id].y
+            };
+            
+            el.style.transition = 'none';
+            el.style.zIndex = 100;
+            document.body.style.userSelect = 'none';
+        }
+
+        function doDrag(e) {
+            if (!draggingElement) return;
+            
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+            
+            dragOffsets[draggingElement.id].x = clientX - startPos.x;
+            dragOffsets[draggingElement.id].y = clientY - startPos.y;
+            
+            updateElementTransform(draggingElement);
+        }
+
+        function stopDrag() {
+            if (!draggingElement) return;
+            
+            draggingElement.style.transition = 'transform 0.7s cubic-bezier(0.65, 0, 0.35, 1), background 0.7s ease, box-shadow 0.7s ease, opacity 0.7s ease';
+            draggingElement.style.zIndex = (draggingElement.id === 'linea-vertical') ? 2 : 1;
+            draggingElement = null;
+            document.body.style.userSelect = '';
+        }
+
+        // Listeners globales para el arrastre
+        window.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', doDrag);
+        window.addEventListener('mouseup', stopDrag);
+        
+        window.addEventListener('touchstart', startDrag, { passive: false });
+        window.addEventListener('touchmove', doDrag, { passive: false });
+        window.addEventListener('touchend', stopDrag);
+
+        sliderH.addEventListener('input', actualizar);
+        sliderV.addEventListener('input', actualizar);
+
+        btnRevelar.addEventListener('click', () => {
+            isRevelado = !isRevelado;
+            
+            if (isRevelado) {
+                canvas.classList.add('revelado');
+                btnRevelar.innerHTML = 'Restaurar <i class="fa-solid fa-undo"></i>';
+                sliderH.disabled = true;
+                sliderV.disabled = true;
+            } else {
+                canvas.classList.remove('revelado');
+                btnRevelar.innerHTML = 'Girar para comparar <i class="fa-solid fa-sync"></i>';
+                sliderH.disabled = false;
+                sliderV.disabled = false;
+            }
+            
+            updateElementTransform(lineaV);
+            updateElementTransform(lineaH);
+        });
+
+        btnIgualar.addEventListener('click', () => {
+            canvas.classList.remove('revelado');
+            isRevelado = false;
+            btnRevelar.innerHTML = 'Girar para comparar <i class="fa-solid fa-sync"></i>';
+            sliderH.disabled = false;
+            sliderV.disabled = false;
+            
+            dragOffsets['linea-horizontal'] = { x: 0, y: 0 };
+            dragOffsets['linea-vertical'] = { x: 0, y: 0 };
+            
+            sliderH.value = 250;
+            sliderV.value = 250;
+            actualizar();
+        });
+
+        // Inicializar
+        actualizar();
+    });
+</script>
+
