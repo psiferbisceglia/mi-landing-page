@@ -1,0 +1,36 @@
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="800" height="800" fill="#e2efda" rx="40" />
+    
+    <!-- Typography (Title) -->
+    <text x="400" y="120" font-family="Serif, 'Lora', Georgia" font-size="42" font-weight="bold" fill="#2c3e2c" text-anchor="middle">THE MÜLLER-LYER ILLUSION</text>
+    
+    <!-- Dashed Guides -->
+    <line x1="200" y1="200" x2="200" y2="600" stroke="#aab7aa" stroke-width="2" stroke-dasharray="8,8" />
+    <line x1="600" y1="200" x2="600" y2="600" stroke="#aab7aa" stroke-width="2" stroke-dasharray="8,8" />
+    
+    <!-- Illusion A (Outward / Convex -> Looks longer) -->
+    <!-- >.......< -->
+    <g transform="translate(0, 300)">
+        <line x1="200" y1="0" x2="600" y2="0" stroke="#1a1a1a" stroke-width="8" stroke-linecap="round" />
+        <!-- Left Arrowhead (Outward) -->
+        <path d="M 160 -40 L 200 0 L 160 40" fill="none" stroke="#1a1a1a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+        <!-- Right Arrowhead (Outward) -->
+        <path d="M 640 -40 L 600 0 L 640 40" fill="none" stroke="#1a1a1a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+        <text x="400" y="80" font-family="sans-serif" font-size="18" fill="#556b2f" text-anchor="middle" font-weight="600" letter-spacing="2">ILLUSION A</text>
+    </g>
+    
+    <!-- Illusion B (Inward / Concave -> Looks shorter) -->
+    <!-- <.......> -->
+    <g transform="translate(0, 500)">
+        <line x1="200" y1="0" x2="600" y2="0" stroke="#1a1a1a" stroke-width="8" stroke-linecap="round" />
+        <!-- Left Arrowhead (Inward) -->
+        <path d="M 240 -40 L 200 0 L 240 40" fill="none" stroke="#1a1a1a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+        <!-- Right Arrowhead (Inward) -->
+        <path d="M 560 -40 L 600 0 L 560 40" fill="none" stroke="#1a1a1a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+        <text x="400" y="80" font-family="sans-serif" font-size="18" fill="#556b2f" text-anchor="middle" font-weight="600" letter-spacing="2">ILLUSION B</text>
+    </g>
+    
+    <!-- Footer Text -->
+    <text x="400" y="720" font-family="sans-serif" font-size="24" font-weight="bold" fill="#2c3e2c" text-anchor="middle">BOTH LINES ARE THE SAME LENGTH</text>
+</svg>
