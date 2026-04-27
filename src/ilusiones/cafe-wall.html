@@ -170,6 +170,7 @@ image: "img/cafe-wall-preview.svg"
         height: 2px;
         background: #ff4757;
         box-shadow: 0 0 5px rgba(255, 71, 87, 0.5);
+        transform: translateY(-50%);
     }
 
     .drag-hint {
@@ -369,11 +370,16 @@ image: "img/cafe-wall-preview.svg"
 
                 // Dibujar guía si está revelado
                 if (isRevelado) {
-                    const guia = document.createElement('div');
-                    guia.className = 'guia-h';
-                    // Usar porcentaje para que sea independiente de la escala del canvas
-                    guia.style.top = ((y + tileSize + mortarWidth/2) / height) * 100 + '%';
-                    guiasContainer.appendChild(guia);
+                    const mortarCenter = y + tileSize + mortarWidth / 2;
+                    const topPct = (mortarCenter / height) * 100;
+                    
+                    // Solo añadir la guía si está dentro del canvas (con un pequeño margen)
+                    if (topPct > 0 && topPct < 100) {
+                        const guia = document.createElement('div');
+                        guia.className = 'guia-h';
+                        guia.style.top = `${topPct}%`;
+                        guiasContainer.appendChild(guia);
+                    }
                 }
 
                 // Calcular desplazamiento de la fila
