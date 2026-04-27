@@ -131,13 +131,10 @@ image: "img/cafe-wall-preview.svg"
         border-radius: 30px;
         padding: 0;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-        display: flex;
-        justify-content: center;
-        align-items: center;
         margin-bottom: 15px;
-        min-height: 400px;
         position: relative;
         overflow: hidden;
+        aspect-ratio: 2 / 1;
     }
 
     #cafe-wall-canvas {
@@ -375,10 +372,8 @@ image: "img/cafe-wall-preview.svg"
                 if (isRevelado) {
                     const guia = document.createElement('div');
                     guia.className = 'guia-h';
-                    // Calcular posición relativa en % o px para el contenedor
-                    const canvasDisplayHeight = canvas.getBoundingClientRect().height;
-                    const scale = canvasDisplayHeight / height;
-                    guia.style.top = (y + tileSize + mortarWidth/2) * scale + 'px';
+                    // Usar porcentaje para que sea independiente de la escala del canvas
+                    guia.style.top = ((y + tileSize + mortarWidth/2) / height) * 100 + '%';
                     guiasContainer.appendChild(guia);
                 }
 
