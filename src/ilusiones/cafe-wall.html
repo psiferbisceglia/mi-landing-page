@@ -1,0 +1,435 @@
+---
+layout: base.njk
+title: "Ilusión de la Pared del Café"
+description: "Explora la ilusión de la Pared del Café: ¿por qué las líneas paralelas parecen inclinarse cuando están entre cuadros desplazados?"
+image: "img/cafe-wall-preview.svg"
+---
+
+<div class="ilusion-detalle-container">
+    <div class="retroceso">
+        <a href="/ilusiones/"><i class="fa-solid fa-arrow-left"></i> Volver a Ilusiones</a>
+    </div>
+
+    <header class="ilusion-header animar">
+        <h1>Ilusión de la Pared del Café</h1>
+        <p class="subtitulo">El misterio de las líneas paralelas que parecen converger</p>
+    </header>
+
+    <section class="interactivo-seccion animar">
+        <div class="canvas-contenedor">
+            <canvas id="cafe-wall-canvas" width="800" height="400"></canvas>
+            
+            <div class="guias-revelacion">
+                <!-- Se generarán dinámicamente -->
+            </div>
+
+            <div class="drag-hint animar">
+                <i class="fa-solid fa-circle-info"></i> Ajusta los controles para ver cómo cambia la percepción
+            </div>
+        </div>
+
+        <div class="controles">
+            <div class="control-grupo">
+                <label for="slider-offset">Desplazamiento</label>
+                <input type="range" id="slider-offset" min="0" max="100" value="50">
+            </div>
+            <div class="control-grupo">
+                <label for="slider-mortar">Grosor Mortero</label>
+                <input type="range" id="slider-mortar" min="0" max="10" value="2" step="0.5">
+            </div>
+            <div class="control-grupo">
+                <label for="slider-brightness">Brillo Mortero</label>
+                <input type="range" id="slider-brightness" min="0" max="255" value="128">
+            </div>
+            <div class="control-grupo">
+                <label for="slider-tiles">Tamaño Cuadros</label>
+                <input type="range" id="slider-tiles" min="20" max="80" value="40">
+            </div>
+
+            <div class="botones-acciones">
+                <button id="btn-revelar" class="btn">Mostrar Guías <i class="fa-solid fa-eye"></i></button>
+                <button id="btn-reiniciar" class="btn btn-secundario">Reiniciar</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="explicacion animar">
+        <h2>¿Qué está pasando?</h2>
+        <p>
+            Aunque las líneas horizontales (el "mortero") son perfectamente paralelas, nuestro cerebro las percibe como si estuvieran inclinadas o formaran cuñas. Este efecto es una de las ilusiones geométricas más potentes que existen.
+        </p>
+        <div class="explicacion-grid">
+            <div class="explicacion-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <h3>Filtros Espaciales</h3>
+                <p>Nuestro sistema visual procesa la imagen a través de neuronas que detectan bordes. Cuando los cuadros están desplazados, las interacciones entre las zonas claras y oscuras en el borde del mortero crean pequeñas señales de "inclinación local" que el cerebro suma para percibir una inclinación global.</p>
+            </div>
+            <div class="explicacion-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <h3>El Rol del Mortero</h3>
+                <p>El color del mortero es crucial. La ilusión es más fuerte cuando su brillo está a medio camino entre el blanco y el negro de los cuadros. Si el mortero es demasiado oscuro o demasiado claro, el cerebro puede distinguir claramente las líneas y la ilusión desaparece.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    .ilusion-detalle-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 150px 20px 40px;
+    }
+
+    .ilusion-detalle-container section {
+        min-height: auto;
+        padding: 0;
+        display: block;
+    }
+
+    .retroceso {
+        margin-bottom: 10px;
+    }
+
+    .retroceso a {
+        color: var(--color-principal);
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .retroceso a:hover {
+        transform: translateX(-5px);
+    }
+
+    .ilusion-header {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .ilusion-header h1 {
+        font-size: 3rem;
+        color: var(--color-principal);
+        margin-bottom: 10px;
+    }
+
+    .subtitulo {
+        font-size: 1.2rem;
+        color: #666;
+        font-style: italic;
+    }
+
+    /* Canvas */
+    .canvas-contenedor {
+        background: #f0f0f0;
+        border-radius: 30px;
+        padding: 0;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+        min-height: 400px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #cafe-wall-canvas {
+        width: 100%;
+        height: auto;
+        display: block;
+        image-rendering: crisp-edges;
+    }
+
+    .guias-revelacion {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .revelado .guias-revelacion {
+        opacity: 1;
+    }
+
+    .guia-h {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #ff4757;
+        box-shadow: 0 0 5px rgba(255, 71, 87, 0.5);
+    }
+
+    .drag-hint {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.85rem;
+        color: #666;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 5px 15px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        backdrop-filter: blur(5px);
+    }
+
+    /* Controles */
+    .controles {
+        background: var(--color-secundario);
+        padding: 40px;
+        border-radius: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px 30px;
+        align-items: center;
+    }
+
+    .control-grupo {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .control-grupo label {
+        font-weight: 700;
+        color: var(--color-principal);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    input[type="range"] {
+        appearance: none;
+        background: rgba(107, 142, 107, 0.2);
+        height: 6px;
+        border-radius: 10px;
+        outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: var(--color-principal);
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(107, 142, 107, 0.3);
+        transition: transform 0.2s;
+    }
+
+    .botones-acciones {
+        grid-column: span 2;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 10px;
+    }
+
+    .btn-secundario {
+        background-color: transparent;
+        color: var(--color-principal);
+        border: 2px solid var(--color-principal);
+    }
+
+    /* Explicación */
+    .explicacion {
+        margin-top: 40px;
+    }
+
+    .explicacion h2 {
+        font-size: 2.2rem;
+        color: var(--color-principal);
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .explicacion > p {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: #444;
+        max-width: 800px;
+        margin: 0 auto 20px;
+        text-align: center;
+    }
+
+    .explicacion-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .explicacion-card {
+        background: white;
+        padding: 40px 30px;
+        border-radius: 30px;
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .explicacion-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        border-color: var(--color-principal);
+    }
+
+    .card-icon {
+        width: 64px;
+        height: 64px;
+        background: var(--color-secundario);
+        color: var(--color-principal);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        font-size: 1.6rem;
+    }
+
+    .explicacion-card h3 {
+        color: var(--color-principal);
+        margin-bottom: 15px;
+        font-size: 1.4rem;
+        font-weight: 800;
+    }
+
+    .explicacion-card p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #555;
+    }
+
+    @media (max-width: 768px) {
+        .controles {
+            grid-template-columns: 1fr;
+        }
+        .botones-acciones {
+            grid-column: 1;
+            flex-direction: column;
+        }
+        .explicacion-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const canvas = document.getElementById('cafe-wall-canvas');
+        const ctx = canvas.getContext('2d');
+        const container = document.querySelector('.canvas-contenedor');
+        const guiasContainer = document.querySelector('.guias-revelacion');
+        
+        const sliderOffset = document.getElementById('slider-offset');
+        const sliderMortar = document.getElementById('slider-mortar');
+        const sliderBrightness = document.getElementById('slider-brightness');
+        const sliderTiles = document.getElementById('slider-tiles');
+        
+        const btnRevelar = document.getElementById('btn-revelar');
+        const btnReiniciar = document.getElementById('btn-reiniciar');
+
+        let isRevelado = false;
+
+        function draw() {
+            const width = canvas.width;
+            const height = canvas.height;
+            const tileSize = parseInt(sliderTiles.value);
+            const mortarWidth = parseFloat(sliderMortar.value);
+            const offsetPct = parseInt(sliderOffset.value) / 100;
+            const brightness = parseInt(sliderBrightness.value);
+            const mortarColor = `rgb(${brightness}, ${brightness}, ${brightness})`;
+
+            ctx.clearRect(0, 0, width, height);
+            
+            // Limpiar guías
+            guiasContainer.innerHTML = '';
+
+            const rows = Math.ceil(height / (tileSize + mortarWidth)) + 1;
+            const cols = Math.ceil(width / tileSize) + 2;
+
+            for (let r = 0; r < rows; r++) {
+                const y = r * (tileSize + mortarWidth);
+                
+                // Dibujar mortero (fondo de la fila)
+                if (mortarWidth > 0) {
+                    ctx.fillStyle = mortarColor;
+                    ctx.fillRect(0, y + tileSize, width, mortarWidth);
+                }
+
+                // Dibujar guía si está revelado
+                if (isRevelado) {
+                    const guia = document.createElement('div');
+                    guia.className = 'guia-h';
+                    // Calcular posición relativa en % o px para el contenedor
+                    const canvasDisplayHeight = canvas.getBoundingClientRect().height;
+                    const scale = canvasDisplayHeight / height;
+                    guia.style.top = (y + tileSize + mortarWidth/2) * scale + 'px';
+                    guiasContainer.appendChild(guia);
+                }
+
+                // Calcular desplazamiento de la fila
+                // Las filas alternan desplazamiento
+                let rowOffset = (r % 2 === 0) ? 0 : offsetPct * tileSize;
+                
+                for (let c = -1; c < cols; c++) {
+                    const x = c * tileSize + rowOffset;
+                    ctx.fillStyle = (c % 2 === 0) ? '#000' : '#fff';
+                    ctx.fillRect(x, y, tileSize, tileSize);
+                }
+            }
+        }
+
+        function update() {
+            draw();
+        }
+
+        // Listeners
+        [sliderOffset, sliderMortar, sliderBrightness, sliderTiles].forEach(s => {
+            s.addEventListener('input', update);
+        });
+
+        btnRevelar.addEventListener('click', () => {
+            isRevelado = !isRevelado;
+            if (isRevelado) {
+                container.classList.add('revelado');
+                btnRevelar.innerHTML = 'Ocultar Guías <i class="fa-solid fa-eye-slash"></i>';
+            } else {
+                container.classList.remove('revelado');
+                btnRevelar.innerHTML = 'Mostrar Guías <i class="fa-solid fa-eye"></i>';
+            }
+            draw();
+        });
+
+        btnReiniciar.addEventListener('click', () => {
+            sliderOffset.value = 50;
+            sliderMortar.value = 2;
+            sliderBrightness.value = 128;
+            sliderTiles.value = 40;
+            isRevelado = false;
+            container.classList.remove('revelado');
+            btnRevelar.innerHTML = 'Mostrar Guías <i class="fa-solid fa-eye"></i>';
+            draw();
+        });
+
+        // Responsividad del canvas
+        window.addEventListener('resize', draw);
+        
+        // Inicializar
+        draw();
+    });
+</script>

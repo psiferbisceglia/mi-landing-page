@@ -1,0 +1,35 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo -->
+  <rect width="400" height="400" fill="#f8f9f8"/>
+  
+  <!-- Fila 1 -->
+  <rect x="0" y="50" width="80" height="80" fill="#000"/>
+  <rect x="80" y="50" width="80" height="80" fill="#fff"/>
+  <rect x="160" y="50" width="80" height="80" fill="#000"/>
+  <rect x="240" y="50" width="80" height="80" fill="#fff"/>
+  <rect x="320" y="50" width="80" height="80" fill="#000"/>
+  
+  <!-- Mortero 1 -->
+  <rect x="0" y="130" width="400" height="4" fill="#888"/>
+  
+  <!-- Fila 2 (Desplazada) -->
+  <rect x="-40" y="134" width="80" height="80" fill="#fff"/>
+  <rect x="40" y="134" width="80" height="80" fill="#000"/>
+  <rect x="120" y="134" width="80" height="80" fill="#fff"/>
+  <rect x="200" y="134" width="80" height="80" fill="#000"/>
+  <rect x="280" y="134" width="80" height="80" fill="#fff"/>
+  <rect x="360" y="134" width="80" height="80" fill="#000"/>
+  
+  <!-- Mortero 2 -->
+  <rect x="0" y="214" width="400" height="4" fill="#888"/>
+  
+  <!-- Fila 3 (Alineada con 1) -->
+  <rect x="0" y="218" width="80" height="80" fill="#000"/>
+  <rect x="80" y="218" width="80" height="80" fill="#fff"/>
+  <rect x="160" y="218" width="80" height="80" fill="#000"/>
+  <rect x="240" y="218" width="80" height="80" fill="#fff"/>
+  <rect x="320" y="218" width="80" height="80" fill="#000"/>
+
+  <!-- Mortero 3 -->
+  <rect x="0" y="298" width="400" height="4" fill="#888"/>
+</svg>
