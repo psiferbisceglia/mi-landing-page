@@ -1,0 +1,350 @@
+---
+layout: base.njk
+title: "Ilusión de Poggendorff"
+description: "Descubre la ilusión de Poggendorff: ¿por qué una línea recta parece estar desalineada cuando es interrumpida por un obstáculo?"
+image: "img/poggendorff-preview.svg"
+---
+
+<div class="ilusion-detalle-container">
+    <div class="retroceso">
+        <a href="/ilusiones/"><i class="fa-solid fa-arrow-left"></i> Volver a Ilusiones</a>
+    </div>
+
+    <header class="ilusion-header animar">
+        <h1>Ilusión de Poggendorff</h1>
+        <p class="subtitulo">El enigma de las líneas interrumpidas</p>
+    </header>
+
+    <section class="interactivo-seccion animar">
+        <div class="canvas-contenedor">
+            <div id="status-mensaje" class="desafio-instruccion">
+                <h3>¿Cuál de las líneas es la continuación de la línea negra?</h3>
+            </div>
+
+            <div id="ilusion-canvas">
+                <svg width="600" height="400" viewBox="0 0 600 400">
+                    <!-- Guía de alineación (punteada) -->
+                    <line id="guia-alineacion" class="guia-linea-svg" x1="0" y1="0" x2="600" y2="400" />
+                    
+                    <!-- Segmento Izquierdo (Negro) -->
+                    <line id="segmento-izq" class="linea-ilusion" x1="100" y1="50" x2="250" y2="170" stroke="#1a1a1a" />
+                    
+                    <!-- Segmento Rojo (Opción A) -->
+                    <line id="segmento-rojo" class="linea-ilusion" x1="350" y1="250" x2="450" y2="330" stroke="#e74c3c" />
+                    
+                    <!-- Segmento Azul (Opción B) -->
+                    <line id="segmento-azul" class="linea-ilusion" x1="350" y1="230" x2="450" y2="310" stroke="#3498db" />
+                    
+                    <!-- Rectángulo Oclusor -->
+                    <rect id="rect-obstruccion" x="250" y="50" width="100" height="300" rx="5" />
+                </svg>
+            </div>
+
+            <div id="feedback-contenedor" class="resultado-inline" style="display: none;">
+                <div class="mensaje-texto"></div>
+            </div>
+
+            <div id="exploracion-hint" class="drag-hint" style="display: none;">
+                <i class="fa-solid fa-sliders"></i> Ahora usa los controles para explorar la ilusión
+            </div>
+        </div>
+
+        <!-- CONTROLES FASE 1: DESAFÍO -->
+        <div id="controles-desafio" class="botones-desafio">
+            <button class="btn btn-opcion-roja" onclick="resolverDesafio('roja')">Línea Roja</button>
+            <button class="btn btn-opcion-azul" onclick="resolverDesafio('azul')">Línea Azul</button>
+        </div>
+
+        <!-- CONTROLES FASE 2: EXPLORACIÓN (Ocultos inicialmente) -->
+        <div id="controles-exploracion" class="controles" style="display: none;">
+            <div class="control-grupo" style="grid-column: span 2;">
+                <label for="slider-ancho">Ancho del Obstáculo</label>
+                <input type="range" id="slider-ancho" min="40" max="180" value="100">
+            </div>
+            <div class="control-grupo" style="grid-column: span 2; justify-content: center; align-items: center; margin-top: 10px;">
+                <button id="btn-revelar" class="btn">Revelar Guía <i class="fa-solid fa-eye"></i></button>
+            </div>
+            
+            <div class="botones-acciones" style="grid-column: span 2;">
+                <button id="btn-reiniciar" class="btn btn-secundario">Reiniciar Todo</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="explicacion animar">
+        <h2>¿Qué está pasando?</h2>
+        <p>
+            En la ilusión de Poggendorff, una línea diagonal que atraviesa un rectángulo sólido parece estar desalineada. Lo curioso es que, cuando las líneas están <strong>realmente</strong> alineadas, tendemos a percibir que el segmento de la derecha está más alto de lo que debería.
+        </p>
+        <div class="explicacion-grid">
+            <div class="explicacion-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+                <h3>Distorsión Angular</h3>
+                <p>Nuestro sistema visual tiende a sobreestimar los ángulos agudos y subestimar los obtusos. Al encontrarse la línea diagonal con las verticales del rectángulo, el cerebro "endereza" mentalmente la línea, haciendo que parezca que los segmentos no coinciden.</p>
+            </div>
+            <div class="explicacion-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <h3>Efecto de la Distancia</h3>
+                <p>Cuanto más ancho es el obstáculo central, más fuerte es la ilusión. Esto ocurre porque el cerebro tiene que realizar una interpolación mayor a través del espacio vacío (o tapado), lo que da más margen al error de procesamiento geométrico.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    .ilusion-detalle-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 150px 20px 40px;
+    }
+
+    .ilusion-detalle-container section {
+        min-height: auto;
+        padding: 0;
+        display: block;
+    }
+
+    .retroceso { margin-bottom: 10px; }
+    .retroceso a {
+        color: var(--color-principal);
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.3s ease;
+    }
+    .retroceso a:hover { transform: translateX(-5px); }
+
+    .ilusion-header { text-align: center; margin-bottom: 15px; }
+    .ilusion-header h1 { font-size: 3rem; color: var(--color-principal); margin-bottom: 10px; }
+    .subtitulo { font-size: 1.2rem; color: #666; font-style: italic; }
+
+    /* Canvas */
+    .canvas-contenedor {
+        background: white;
+        border-radius: 30px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+        min-height: 550px;
+        position: relative;
+    }
+
+    .linea-ilusion {
+        stroke-width: 8;
+        stroke-linecap: round;
+        transition: stroke 0.5s ease, opacity 0.5s ease;
+    }
+
+    #rect-obstruccion {
+        fill: #cccccc;
+        transition: opacity 0.5s ease;
+    }
+
+    .guia-linea-svg {
+        stroke: var(--color-principal);
+        stroke-width: 2;
+        stroke-dasharray: 10, 5;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    /* Estados */
+    .revelado .guia-linea-svg { opacity: 1; }
+    .revelado #rect-obstruccion { opacity: 0.3; }
+
+    .desafio-instruccion h3 {
+        color: var(--color-principal);
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .botones-desafio {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .btn-opcion-roja { background-color: #e74c3c; border-color: #e74c3c; }
+    .btn-opcion-azul { background-color: #3498db; border-color: #3498db; }
+
+    .resultado-inline {
+        margin-top: 20px;
+        padding: 15px 30px;
+        border-radius: 20px;
+        text-align: center;
+        width: 100%;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .success-box { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+    .error-box { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+
+    /* Controles */
+    .controles {
+        background: var(--color-secundario);
+        padding: 40px;
+        border-radius: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        align-items: center;
+    }
+
+    .control-grupo { display: flex; flex-direction: column; gap: 10px; }
+    .control-grupo label { font-weight: 700; color: var(--color-principal); font-size: 0.8rem; text-transform: uppercase; }
+
+    input[type="range"] {
+        appearance: none;
+        background: rgba(107, 142, 107, 0.2);
+        height: 8px;
+        border-radius: 10px;
+        outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: var(--color-principal);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .botones-acciones { display: flex; justify-content: center; gap: 20px; margin-top: 10px; }
+    .btn-secundario { background: transparent; color: var(--color-principal); border: 2px solid var(--color-principal); }
+
+    .drag-hint { margin-top: 15px; font-size: 0.85rem; color: #999; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) {
+        .controles { grid-template-columns: 1fr; }
+        .botones-acciones { flex-direction: column; }
+    }
+</style>
+
+<script>
+    // Variables de estado
+    let isRevelado = false;
+    const slope = 0.8;
+    const startX = 100;
+    const startY = 50;
+    const canvasWidth = 600;
+
+    function resolverDesafio(opcion) {
+        const isCorrect = (opcion === 'roja');
+        const feedback = document.getElementById('feedback-contenedor');
+        const mensaje = feedback.querySelector('.mensaje-texto');
+        const instruction = document.getElementById('status-mensaje');
+
+        instruction.style.opacity = '0.3';
+        document.getElementById('controles-desafio').style.display = 'none';
+        
+        if (isCorrect) {
+            feedback.className = 'resultado-inline success-box';
+            mensaje.innerHTML = '<strong>¡Correcto!</strong> La línea roja es la continuación geométrica exacta. Tu cerebro intentó engañarte, pero no pudo.';
+        } else {
+            feedback.className = 'resultado-inline error-box';
+            mensaje.innerHTML = '<strong>¡Casi!</strong> La línea azul <em>parece</em> ser la continuación, pero es una trampa. La roja es la correcta.';
+        }
+
+        feedback.style.display = 'block';
+        
+        // Revelar automáticamente la guía al responder
+        document.querySelector('.canvas-contenedor').classList.add('revelado');
+        isRevelado = true;
+        document.getElementById('btn-revelar').innerHTML = 'Ocultar Guía <i class="fa-solid fa-eye-slash"></i>';
+
+        // Mostrar controles de exploración
+        setTimeout(() => {
+            document.getElementById('controles-exploracion').style.display = 'grid';
+            document.getElementById('exploracion-hint').style.display = 'block';
+        }, 500);
+    }
+
+    function update() {
+        const rect = document.getElementById('rect-obstruccion');
+        const segIzq = document.getElementById('segmento-izq');
+        const segRojo = document.getElementById('segmento-rojo');
+        const segAzul = document.getElementById('segmento-azul');
+        const guia = document.getElementById('guia-alineacion');
+        
+        const sliderAncho = document.getElementById('slider-ancho');
+
+        const anchoRect = parseInt(sliderAncho.value);
+        const offsetRojo = 0; // Fijo: Siempre alineado
+        const offsetAzul = -20; // Fijo: Siempre desviado
+        
+        const rectX = (canvasWidth - anchoRect) / 2;
+        rect.setAttribute('x', rectX);
+        rect.setAttribute('width', anchoRect);
+
+        const xIntersectLeft = rectX;
+        const yIntersectLeft = startY + slope * (xIntersectLeft - startX);
+        const xIntersectRight = rectX + anchoRect;
+        const yIntersectRight = startY + slope * (xIntersectRight - startX);
+
+        segIzq.setAttribute('x1', startX);
+        segIzq.setAttribute('y1', startY);
+        segIzq.setAttribute('x2', xIntersectLeft);
+        segIzq.setAttribute('y2', yIntersectLeft);
+
+        const endX = 450;
+        const endY = startY + slope * (endX - startX);
+
+        // Actualizar Rojo
+        segRojo.setAttribute('x1', xIntersectRight);
+        segRojo.setAttribute('y1', yIntersectRight + offsetRojo);
+        segRojo.setAttribute('x2', endX);
+        segRojo.setAttribute('y2', endY + offsetRojo);
+
+        // Actualizar Azul
+        segAzul.setAttribute('x1', xIntersectRight);
+        segAzul.setAttribute('y1', yIntersectRight + offsetAzul);
+        segAzul.setAttribute('x2', endX);
+        segAzul.setAttribute('y2', endY + offsetAzul);
+
+        // Guía
+        guia.setAttribute('x1', 0);
+        guia.setAttribute('y1', startY - slope * startX);
+        guia.setAttribute('x2', 600);
+        guia.setAttribute('y2', startY + slope * (600 - startX));
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const sliderAncho = document.getElementById('slider-ancho');
+        const btnRevelar = document.getElementById('btn-revelar');
+        const btnReiniciar = document.getElementById('btn-reiniciar');
+
+        sliderAncho.addEventListener('input', update);
+
+        btnRevelar.addEventListener('click', () => {
+            isRevelado = !isRevelado;
+            const container = document.querySelector('.canvas-contenedor');
+            if (isRevelado) {
+                container.classList.add('revelado');
+                btnRevelar.innerHTML = 'Ocultar Guía <i class="fa-solid fa-eye-slash"></i>';
+            } else {
+                container.classList.remove('revelado');
+                btnRevelar.innerHTML = 'Revelar Guía <i class="fa-solid fa-eye"></i>';
+            }
+        });
+
+        btnReiniciar.addEventListener('click', () => {
+            location.reload(); // Forma más limpia de resetear el estado del "juego"
+        });
+
+        update();
+    });
+</script>
