@@ -315,13 +315,47 @@ image: "img/cafe-wall-preview.svg"
     }
 
     @media (max-width: 768px) {
+        .guias-revelacion {
+            left: -15px;
+            width: calc(100% + 30px);
+        }
+
+        .canvas-contenedor {
+            margin-bottom: 40px;
+        }
+
+        .drag-hint {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            bottom: auto;
+            transform: none;
+            margin-top: 12px;
+            background: none;
+            backdrop-filter: none;
+            box-shadow: none;
+            padding: 0;
+            font-size: 0.8rem;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
         .controles {
-            grid-template-columns: 1fr;
+            padding: 25px;
+            gap: 20px;
         }
+
         .botones-acciones {
-            grid-column: 1;
             flex-direction: column;
+            width: 100%;
         }
+
+        .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
         .explicacion-grid {
             grid-template-columns: 1fr;
         }
