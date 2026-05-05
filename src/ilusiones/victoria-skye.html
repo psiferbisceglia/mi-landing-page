@@ -1,0 +1,444 @@
+---
+layout: base.njk
+title: "Ilusión de Victoria Skye"
+description: "Una fascinante alternativa a la ilusión de la Pared del Café, creada por la artista Victoria Skye."
+image: "img/victoria-skye-illusion.png"
+---
+
+<div class="ilusion-detalle-container">
+    <div class="retroceso">
+        <a href="/ilusiones/"><i class="fa-solid fa-arrow-left"></i> Volver a Ilusiones</a>
+    </div>
+
+    <header class="ilusion-header animar">
+        <h1>Ilusión de Victoria Skye</h1>
+        <p class="subtitulo">Una fascinante variante de la ilusión de la Pared del Café</p>
+    </header>
+
+    <section class="interactivo-seccion animar">
+        <div class="canvas-contenedor skye-contenedor" id="skye-contenedor">
+            <div class="canvas-recorte skye-recorte" style="position: relative;">
+                {% optimizedImage "img/victoria-skye-illusion.png", "Ilusión óptica de Victoria Skye", "(max-width: 800px) 100vw, 800px", "skye-imagen" %}
+                <div class="guias-revelacion" id="guias-container">
+                    <div class="guia-h" id="guia-superior" style="top: 50%;"></div>
+                    <div class="guia-h" id="guia-inferior" style="top: 61.5%;"></div>
+                </div>
+                <div class="drag-hint animar" id="drag-hint">
+                    <i class="fa-solid fa-up-down"></i> Ajusta las guías para enmarcar una fila
+                </div>
+            </div>
+            
+            <div class="autor-credito animar">
+                <i class="fa-solid fa-copyright"></i> Creada por <strong><a href="https://www.victoriaskye.com/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">Victoria Skye</a></strong>. Utilizada con permiso de la autora.
+            </div>
+        </div>
+
+        <div class="controles" style="margin-bottom: 20px;">
+            <div class="botones-acciones" style="margin-top: 0;">
+                <button id="btn-revelar" class="btn">Mostrar Guías <i class="fa-solid fa-eye"></i></button>
+                <button id="btn-reiniciar" class="btn btn-secundario">Reiniciar</button>
+            </div>
+
+            <div class="control-grupo" id="control-guia" style="display: none;">
+                <label for="slider-guia">Posición de la Guía</label>
+                <input type="range" id="slider-guia" min="0" max="885" value="500">
+            </div>
+        </div>
+
+        <div class="controles">
+            <div class="control-grupo texto-centrado" id="texto-intro">
+                <p>Esta es una versión estática de la ilusión, diseñada por la artista, ilusionista y matemática Victoria Skye.</p>
+                <p>Al igual que en la Pared del Café clásica, las líneas horizontales que separan las filas son <strong>completamente rectas y paralelas</strong>, aunque nuestro cerebro las perciba fuertemente inclinadas o formando un patrón de zig-zag.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="explicacion animar">
+        <h2>¿Qué está pasando?</h2>
+        <p>
+            Victoria Skye ha llevado el concepto de la ilusión de la Pared del Café a un nuevo nivel utilizando colores, contrastes y pequeños detalles geométricos que "engañan" de manera aún más potente a nuestros detectores visuales de bordes.
+        </p>
+        <div class="explicacion-grid">
+            <div class="explicacion-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-palette"></i>
+                </div>
+                <h3>El Rol del Color</h3>
+                <p>El uso del azul oscuro y claro interactuando con los bordes blancos y negros de los patrones contribuye a confundir las señales que el ojo envía al cerebro sobre la orientación global de las líneas.</p>
+            </div>
+            <div class="explicacion-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-shapes"></i>
+                </div>
+                <h3>Micropatrones</h3>
+                <p>Los pequeños rombos y cuadrados en las intersecciones actúan como "anclas" visuales engañosas. Nuestro cerebro intenta dar sentido a estas formas locales y termina distorsionando la percepción de las líneas horizontales.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    body {
+        overflow-x: hidden;
+    }
+
+    .ilusion-detalle-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 150px 20px 40px;
+    }
+
+    .ilusion-detalle-container section {
+        min-height: auto;
+        padding: 0;
+        display: block;
+    }
+
+    .retroceso {
+        margin-bottom: 10px;
+    }
+
+    .retroceso a {
+        color: var(--color-principal);
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .retroceso a:hover {
+        transform: translateX(-5px);
+    }
+
+    .ilusion-header {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .ilusion-header h1 {
+        font-size: 3rem;
+        color: var(--color-principal);
+        margin-bottom: 10px;
+    }
+
+    .subtitulo {
+        font-size: 1.2rem;
+        color: #666;
+        font-style: italic;
+    }
+
+    /* Contenedor de la Imagen */
+    .skye-contenedor {
+        margin-bottom: 15px;
+        position: relative;
+        width: 100%;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .skye-recorte {
+        width: 100%;
+        background: #f0f0f0;
+        border-radius: 30px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        /* overflow: hidden; - quitado para que las guías sobresalgan */
+        display: block;
+        line-height: 0; /* Elimina márgenes invisibles debajo de inline-blocks */
+    }
+
+    .skye-recorte picture {
+        width: 100%;
+        display: block;
+    }
+
+    .skye-imagen {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover; /* Asegura que la imagen llene el espacio */
+        border-radius: 30px; /* Mantiene los bordes redondeados al quitar el overflow hidden del contenedor */
+    }
+
+    .guias-revelacion {
+        position: absolute;
+        top: 0;
+        left: -40px;
+        width: calc(100% + 80px);
+        height: 100%;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 10;
+    }
+
+    .skye-contenedor.revelado .guias-revelacion {
+        opacity: 1;
+    }
+
+    .guia-h {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #ff4757;
+        box-shadow: 0 0 5px rgba(255, 71, 87, 0.5);
+        transform: translateY(-50%);
+    }
+
+    .drag-hint {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.85rem;
+        color: #666;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 5px 15px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        z-index: 11;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .skye-contenedor.revelado .drag-hint {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .autor-credito {
+        margin-top: 15px;
+        background: rgba(107, 142, 107, 0.1);
+        color: var(--color-principal);
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid rgba(107, 142, 107, 0.2);
+    }
+
+    /* Controles */
+    .controles {
+        background: var(--color-secundario);
+        padding: 30px 40px;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .texto-centrado {
+        text-align: center;
+        font-size: 1.1rem;
+        color: #444;
+        line-height: 1.6;
+    }
+
+    .texto-centrado p {
+        margin-bottom: 10px;
+    }
+
+    .texto-centrado p:last-child {
+        margin-bottom: 0;
+    }
+
+    .control-grupo {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .control-grupo label {
+        font-weight: 700;
+        color: var(--color-principal);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    input[type="range"] {
+        appearance: none;
+        background: rgba(107, 142, 107, 0.2);
+        height: 6px;
+        border-radius: 10px;
+        outline: none;
+        width: 100%;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: var(--color-principal);
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(107, 142, 107, 0.3);
+        transition: transform 0.2s;
+    }
+
+    .botones-acciones {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 15px;
+    }
+
+    .btn-secundario {
+        background-color: transparent;
+        color: var(--color-principal);
+        border: 2px solid var(--color-principal);
+    }
+
+    /* Explicación */
+    .explicacion {
+        margin-top: 40px;
+    }
+
+    .explicacion h2 {
+        font-size: 2.2rem;
+        color: var(--color-principal);
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .explicacion > p {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: #444;
+        max-width: 800px;
+        margin: 0 auto 20px;
+        text-align: center;
+    }
+
+    .explicacion-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .explicacion-card {
+        background: white;
+        padding: 40px 30px;
+        border-radius: 30px;
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .explicacion-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        border-color: var(--color-principal);
+    }
+
+    .card-icon {
+        width: 64px;
+        height: 64px;
+        background: var(--color-secundario);
+        color: var(--color-principal);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        font-size: 1.6rem;
+    }
+
+    .explicacion-card h3 {
+        color: var(--color-principal);
+        margin-bottom: 15px;
+        font-size: 1.4rem;
+        font-weight: 800;
+    }
+
+    .explicacion-card p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #555;
+    }
+
+    @media (max-width: 768px) {
+        .guias-revelacion {
+            left: -15px;
+            width: calc(100% + 30px);
+        }
+
+        .controles {
+            padding: 25px;
+        }
+
+        .botones-acciones {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .explicacion-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const btnRevelar = document.getElementById('btn-revelar');
+        const btnReiniciar = document.getElementById('btn-reiniciar');
+        const contenedor = document.getElementById('skye-contenedor');
+        const controlGuia = document.getElementById('control-guia');
+        const sliderGuia = document.getElementById('slider-guia');
+        const guiaSuperior = document.getElementById('guia-superior');
+        const guiaInferior = document.getElementById('guia-inferior');
+        const textoIntro = document.getElementById('texto-intro');
+        
+        let isRevelado = false;
+        const alturaFila = 11.5; // Grosor de fila fijo en %
+
+        function updateGuia() {
+            const pos = sliderGuia.value / 10; // 0 to 88.5
+            
+            guiaSuperior.style.top = `${pos}%`;
+            guiaInferior.style.top = `${pos + alturaFila}%`;
+        }
+
+        btnRevelar.addEventListener('click', () => {
+            isRevelado = !isRevelado;
+            if (isRevelado) {
+                contenedor.classList.add('revelado');
+                controlGuia.style.display = 'flex';
+                btnRevelar.innerHTML = 'Ocultar Guías <i class="fa-solid fa-eye-slash"></i>';
+            } else {
+                contenedor.classList.remove('revelado');
+                controlGuia.style.display = 'none';
+                btnRevelar.innerHTML = 'Mostrar Guías <i class="fa-solid fa-eye"></i>';
+            }
+        });
+
+        btnReiniciar.addEventListener('click', () => {
+            sliderGuia.value = 500;
+            updateGuia();
+            isRevelado = false;
+            contenedor.classList.remove('revelado');
+            controlGuia.style.display = 'none';
+            btnRevelar.innerHTML = 'Mostrar Guías <i class="fa-solid fa-eye"></i>';
+        });
+
+        sliderGuia.addEventListener('input', updateGuia);
+    });
+</script>

@@ -1,0 +1,497 @@
+---
+layout: base.njk
+title: "Cuarto de Ames"
+description: "Explora la ilusión del Cuarto de Ames: un espacio distorsionado donde las personas parecen cambiar de tamaño mágicamente."
+image: "img/ames-room-preview.png"
+---
+
+<div class="ilusion-detalle-container">
+    <div class="retroceso">
+        <a href="/ilusiones/"><i class="fa-solid fa-arrow-left"></i> Volver a Ilusiones</a>
+    </div>
+
+    <header class="ilusion-header animar">
+        <h1>Cuarto de Ames</h1>
+        <p class="subtitulo">Donde la perspectiva desafía a la lógica</p>
+    </header>
+
+    <section class="interactivo-seccion animar">
+        <div class="canvas-contenedor">
+            <div id="status-mensaje" class="desafio-instruccion">
+                <h3>Desliza al personaje para ver cómo cambia su tamaño</h3>
+            </div>
+
+            <div class="ames-experiencia">
+                <div class="ames-viewport-container">
+                    <div class="ames-viewport">
+                        <div class="ames-room" id="ames-room">
+                            <!-- Paredes -->
+                            <div class="wall wall-back"></div>
+                            <div class="wall wall-left"></div>
+                            <div class="wall wall-right"></div>
+                            <div class="wall wall-floor"></div>
+                            <div class="wall wall-ceiling"></div>
+                            
+                            <!-- Personaje -->
+                            <div class="character-container" id="character">
+                                <div class="character-body">
+                                    <i class="fa-solid fa-user-ninja"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="etiqueta-vista">Vista del Observador (3D)</p>
+                </div>
+
+                <div class="ames-dashboard-tecnico">
+                    <div class="ames-mapa-container">
+                        <svg id="ames-mapa" viewBox="0 0 200 240">
+                            <!-- Percepción (Rectángulo imaginario) -->
+                            <path d="M 40,40 L 160,40 L 160,200 L 40,200 Z" class="map-perceived" />
+                            <!-- Realidad (Trapecio) -->
+                            <path id="map-real-room" d="M 20,20 L 180,60 L 160,200 L 40,200 Z" class="map-real" />
+                            <!-- Observador (Ojo) -->
+                            <g transform="translate(100, 220)">
+                                <circle r="8" fill="var(--color-principal)" />
+                                <text y="15" text-anchor="middle" font-size="10" fill="white">Ojo</text>
+                            </g>
+                            <!-- Personaje en el mapa -->
+                            <circle id="map-character" cx="100" cy="100" r="6" fill="#e74c3c" />
+                            <line id="map-line-sight" x1="100" y1="220" x2="100" y2="100" stroke="rgba(255,255,255,0.3)" stroke-dasharray="4,4" />
+                        </svg>
+                        <p class="etiqueta-vista">Vista Superior (Planta)</p>
+                    </div>
+
+                    <div class="ames-frontal-container">
+                        <svg id="ames-frontal" viewBox="0 0 200 150">
+                            <!-- Techo inclinado -->
+                            <line x1="20" y1="20" x2="180" y2="60" stroke="var(--color-principal)" stroke-width="3" />
+                            <!-- Suelo inclinado -->
+                            <line x1="20" y1="130" x2="180" y2="90" stroke="var(--color-principal)" stroke-width="3" />
+                            
+                            <!-- Paredes laterales -->
+                            <line x1="20" y1="20" x2="20" y2="130" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+                            <line x1="180" y1="60" x2="180" y2="90" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+
+                            <!-- Personaje (Escala real constante) -->
+                            <g id="front-character-group">
+                                <circle r="15" fill="#e74c3c" />
+                                <text text-anchor="middle" dominant-baseline="middle" font-size="20" fill="white">
+                                    <i class="fa-solid fa-user-ninja"></i>
+                                </text>
+                            </g>
+                        </svg>
+                        <p class="etiqueta-vista">Vista de Elevación</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="exploracion-hint" class="drag-hint">
+                <i class="fa-solid fa-arrows-left-right"></i> Usa el deslizador para mover al personaje
+            </div>
+        </div>
+
+        <div class="controles">
+            <div class="control-grupo">
+                <label for="slider-posicion">Posición del Personaje</label>
+                <input type="range" id="slider-posicion" min="0" max="100" value="0">
+            </div>
+            
+            <div class="botones-acciones">
+                <button id="btn-reiniciar" class="btn btn-secundario">Reiniciar Vista</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="explicacion animar">
+        <h2>¿Qué está pasando?</h2>
+        <p>
+            El Cuarto de Ames es una de las ilusiones ópticas más famosas del mundo. Fue inventado por Adelbert Ames Jr. en 1946. Aunque desde un punto de vista específico parece una habitación rectangular normal, en realidad es un <strong>trapezoide irregular</strong>.
+        </p>
+        <div class="explicacion-grid">
+            <div class="explicacion-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <h3>Punto de Vista Único</h3>
+                <p>La ilusión solo funciona cuando se mira a través de una "mirilla" o un ángulo específico. Desde aquí, la proyección de la habitación en nuestra retina es idéntica a la de un cuarto rectangular.</p>
+            </div>
+            <div class="explicacion-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-ruler-combined"></i>
+                </div>
+                <h3>Distancia Real vs. Percibida</h3>
+                <p>El rincón donde el personaje se ve pequeño está mucho más lejos de la cámara que el rincón donde se ve grande. Al creer que ambos están a la misma distancia, nuestro cerebro concluye que el tamaño del objeto debe ser diferente.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    :root {
+        --room-width: 600px;
+        --room-height: 400px;
+        --room-depth: 600px;
+        --wall-color: #f8f9fa;
+        --floor-color: #e9ecef;
+        --accent-color: var(--color-principal);
+    }
+
+    .ilusion-detalle-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 100px 20px 40px;
+    }
+
+    .retroceso { margin-bottom: 10px; }
+    .retroceso a {
+        color: var(--color-principal);
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.3s ease;
+    }
+    .retroceso a:hover { transform: translateX(-5px); }
+
+    .ilusion-header { text-align: center; margin-bottom: 15px; }
+    .ilusion-header h1 { font-size: 3rem; color: var(--color-principal); margin-bottom: 10px; }
+    .subtitulo { font-size: 1.2rem; color: #666; font-style: italic; }
+
+    /* Canvas / Viewport */
+    .canvas-contenedor {
+        background: #1a1a1a; /* Fondo oscuro para resaltar la habitación */
+        border-radius: 30px;
+        padding: 40px 40px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+        position: relative;
+        /* overflow: hidden; */ /* Eliminado para evitar recortes */
+    }
+
+    .desafio-instruccion h3 {
+        color: white;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+
+    .ames-experiencia {
+        display: flex;
+        gap: 20px;
+        align-items: stretch;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .ames-viewport-container {
+        flex: 1.2;
+        background: rgba(255,255,255,0.03);
+        border-radius: 24px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .ames-dashboard-tecnico {
+        flex: 1.8;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .ames-mapa-container, .ames-frontal-container {
+        flex: 1;
+        background: rgba(255,255,255,0.05);
+        padding: 20px;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .etiqueta-vista {
+        color: rgba(255,255,255,0.4);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-weight: 700;
+        margin-top: 5px;
+    }
+
+    .ames-viewport {
+        width: 100%;
+        height: 350px;
+        perspective: 1000px;
+        perspective-origin: 50% 50%;
+        transition: perspective-origin 1s ease-in-out;
+        overflow: visible;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ames-room {
+        width: 400px;
+        height: 300px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 1s ease-in-out;
+    }
+
+    #ames-mapa, #ames-frontal {
+        width: 100%;
+        height: auto;
+    }
+
+    .map-perceived {
+        fill: none;
+        stroke: rgba(255,255,255,0.1);
+        stroke-width: 2;
+        stroke-dasharray: 5,5;
+    }
+
+    .map-real {
+        fill: rgba(255,255,255,0.05);
+        stroke: var(--color-principal);
+        stroke-width: 3;
+    }
+
+    #map-character, #front-character-group {
+        filter: drop-shadow(0 0 5px #e74c3c);
+        transition: transform 0.1s linear, cx 0.1s linear, cy 0.1s linear;
+    }
+
+
+
+    /* Estilos de las paredes para crear la distorsión */
+    .wall {
+        position: absolute;
+        backface-visibility: hidden;
+        border: 2px solid rgba(0,0,0,0.1);
+    }
+
+    /* La pared del fondo es la clave: está inclinada en el espacio 3D real */
+    .wall-back {
+        width: 100%;
+        height: 100%;
+        background: var(--wall-color);
+        transform: translateZ(-400px); /* Ajustado */
+        background-image: 
+            linear-gradient(45deg, #eee 25%, transparent 25%),
+            linear-gradient(-45deg, #eee 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, #eee 75%),
+            linear-gradient(-45deg, transparent 75%, #eee 75%);
+        background-size: 40px 40px;
+        background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+    }
+
+    .wall-floor {
+        width: 100%;
+        height: 400px; /* Ajustado */
+        background: #d1d8e0;
+        bottom: 0;
+        transform-origin: bottom;
+        transform: rotateX(90deg);
+        background-image: 
+            repeating-conic-gradient(#bdc3c7 0% 25%, #d1d8e0 0% 50%) 
+            50% / 100px 100px;
+    }
+
+    .wall-ceiling {
+        width: 100%;
+        height: 400px; /* Ajustado */
+        background: #f1f2f6;
+        top: 0;
+        transform-origin: top;
+        transform: rotateX(-90deg);
+    }
+
+    .wall-left {
+        width: 400px; /* Ajustado */
+        height: 100%;
+        background: #ecf0f1;
+        left: 0;
+        transform-origin: left;
+        transform: rotateY(90deg);
+    }
+
+    .wall-right {
+        width: 400px; /* Ajustado */
+        height: 100%;
+        background: #ecf0f1;
+        right: 0;
+        transform-origin: right;
+        transform: rotateY(-90deg);
+    }
+
+    /* Personaje */
+    .character-container {
+        position: absolute;
+        bottom: 0;
+        left: 0; /* Cambiado de 50% */
+        width: 60px;
+        height: 100px;
+        transform-style: preserve-3d;
+        pointer-events: none;
+        transition: transform 0.1s linear;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        transform-origin: bottom center;
+    }
+
+    .character-body {
+        font-size: 60px; /* Reducido ligeramente */
+        color: var(--color-principal);
+        filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
+    }
+
+    /* Secciones (sobreescribir default de base.njk para evitar saltos enormes) */
+    .interactivo-seccion {
+        min-height: auto;
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+
+    .explicacion {
+        min-height: auto;
+        padding-top: 20px;
+        margin-top: 0;
+    }
+
+    /* Controles */
+    .controles {
+        background: white;
+        padding: 30px 40px;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: stretch;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .control-grupo { display: flex; flex-direction: column; gap: 10px; }
+    .control-grupo label { font-weight: 700; color: var(--color-principal); font-size: 0.8rem; text-transform: uppercase; }
+
+    input[type="range"] {
+        appearance: none;
+        background: rgba(var(--color-principal-rgb), 0.1);
+        height: 10px;
+        border-radius: 10px;
+        outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        width: 24px;
+        height: 24px;
+        background: var(--color-principal);
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .botones-acciones { display: flex; justify-content: center; margin-top: 10px; }
+    .btn-secundario { background: transparent; color: var(--color-principal); border: 2px solid var(--color-principal); padding: 12px 28px; }
+
+    .drag-hint { margin-top: 20px; font-size: 0.9rem; color: #666; }
+    .explicacion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
+    .explicacion-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+    .card-icon { font-size: 2rem; color: var(--color-principal); margin-bottom: 20px; }
+
+    @media (max-width: 900px) {
+        .ames-experiencia { 
+            flex-direction: column; 
+            gap: 20px; 
+        }
+        .ames-dashboard-tecnico {
+            flex-direction: column;
+        }
+        .ames-viewport { width: 100%; height: 300px; }
+        .ames-room { width: 280px; height: 210px; }
+        .ames-viewport-container { transform: scale(1); padding: 15px; }
+        .explicacion-grid { grid-template-columns: 1fr; }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const room = document.getElementById('ames-room');
+        const character = document.getElementById('character');
+        const slider = document.getElementById('slider-posicion');
+        const btnReiniciar = document.getElementById('btn-reiniciar');
+
+        // Configuración de la habitación de Ames real (distorsionada)
+        // En el "truco", la pared de la izquierda está más lejos que la de la derecha
+        // o viceversa. Aquí haremos que el lado IZQUIERDO esté a -800px y el DERECHO a -200px.
+        
+        const mapCharacter = document.getElementById('map-character');
+        const mapLineSight = document.getElementById('map-line-sight');
+        const frontCharacterGroup = document.getElementById('front-character-group');
+        
+        function updateCharacter() {
+            const val = parseInt(slider.value) / 100; // 0 to 1
+            
+            const roomWidth = room.clientWidth || 400; // Adaptarse al tamaño actual
+            
+            const startX = 20; // Empezar desde el borde izquierdo
+            const endX = roomWidth - 80;  // Hasta el borde derecho dinámico
+            const startZ = -350; 
+            const endZ = -50;  
+            
+            const currentX = startX + (endX - startX) * val;
+            const currentZ = startZ + (endZ - startZ) * val;
+            
+            // Incrementa el tamaño un 15% adicional al acercarse a la derecha
+            const extraScale = 1 + (0.15 * val);
+            
+            character.style.transform = `translateX(${currentX}px) translateZ(${currentZ}px) scale(${extraScale})`;
+
+            // 1. Actualizar Mapa 2D (Planta)
+            const mapRealX = 20 + (160 * val);
+            const mapRealY = 20 + (40 * val); 
+
+            mapCharacter.setAttribute('cx', mapRealX);
+            mapCharacter.setAttribute('cy', mapRealY);
+            
+            mapLineSight.setAttribute('x2', mapRealX);
+            mapLineSight.setAttribute('y2', mapRealY);
+
+            // 2. Actualizar Vista de Elevación (Frontal Real)
+            // Suelo: de (20, 130) a (180, 90)
+            // Techo: de (20, 20) a (180, 60)
+            const frontX = 20 + (160 * val);
+            const frontYFloor = 130 - (40 * val); // Sube hacia la derecha
+            const frontYCeiling = 20 + (40 * val); // Baja hacia la derecha
+            
+            // Posicionamos el personaje sobre el suelo
+            frontCharacterGroup.setAttribute('transform', `translate(${frontX}, ${frontYFloor - 15})`);
+        }
+
+        btnReiniciar.addEventListener('click', () => {
+            slider.value = 0;
+            updateCharacter();
+        });
+
+        slider.addEventListener('input', updateCharacter);
+        window.addEventListener('resize', updateCharacter);
+        
+        // Inicializar
+        updateCharacter();
+    });
+</script>
