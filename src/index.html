@@ -89,6 +89,90 @@ title: "Fernando Bisceglia | Psicólogo Clínico"
     </div>
 </section>
 
+<section id="libro" class="seccion-libro">
+    <div class="libro-contenedor">
+        <div class="libro-tapa animar" aria-hidden="true">
+            <div class="tapa">
+                <span class="tapa-autor">Fernando Bisceglia</span>
+                <span class="tapa-titulo">Vivir<br>con miedo</span>
+                <span class="tapa-sub">Herramientas para que el miedo no te frene</span>
+            </div>
+        </div>
+        <div class="libro-texto animar">
+            <span class="libro-etiqueta">Mi próximo libro</span>
+            <h2>Vivir con miedo</h2>
+            <p>
+                Estoy escribiendo un libro sobre el miedo: de dónde viene, las mil formas que tenemos de esquivarlo
+                y qué pasa cuando dejamos de huir de él.
+            </p>
+            <p>
+                No es un libro de recetas. Cada capítulo tiene ejercicios para entender algo de vos y para animarte
+                a hacer algo distinto.
+            </p>
+            <form id="form-libro" class="form-libro" novalidate>
+                <label for="libro-email">Dejame tu mail: te mando novedades del libro y te aviso cuando salga.</label>
+                <div class="form-libro-fila">
+                    <input id="libro-email" name="email" type="email" inputmode="email" autocomplete="email"
+                        placeholder="tu@mail.com" maxlength="254" required>
+                    <button type="submit" class="btn">Quiero info del libro</button>
+                </div>
+                <!-- Campo trampa contra robots: no se ve; si viene lleno, no se guarda. -->
+                <input class="campo-trampa" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <p class="form-libro-nota">Solo lo uso para escribirte sobre el libro. No lo comparto con nadie.</p>
+                <p class="form-libro-mensaje" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Formulario del libro: guarda el mail en el panel de Fer (admin.psiferbisceglia.com, sección Interesados).
+    (function () {
+        var form = document.getElementById('form-libro');
+        if (!form) return;
+        var mensaje = form.querySelector('.form-libro-mensaje');
+        var boton = form.querySelector('button');
+        var textoBoton = boton.textContent;
+        var avisar = function (texto, tipo) {
+            mensaje.textContent = texto;
+            mensaje.className = 'form-libro-mensaje ' + tipo;
+        };
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var email = form.email.value.trim();
+            if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email)) {
+                avisar('Revisá el mail: parece que no está bien escrito.', 'error');
+                form.email.focus();
+                return;
+            }
+            boton.disabled = true;
+            boton.textContent = 'Enviando…';
+            avisar('', '');
+            // text/plain: así el navegador no hace la consulta previa de CORS y sale más rápido.
+            fetch('https://admin.psiferbisceglia.com/api/publico/interesados', {
+                method: 'POST',
+                headers: { 'content-type': 'text/plain' },
+                body: JSON.stringify({ email: email, web: form.web.value, origen: location.pathname })
+            }).then(function (r) {
+                return r.json().catch(function () { return {}; }).then(function (d) {
+                    if (!r.ok) {
+                        var err = new Error(d.error || 'No se pudo guardar.');
+                        err.delServidor = true;
+                        throw err;
+                    }
+                });
+            }).then(function () {
+                form.classList.add('enviado');
+                avisar('¡Listo! Te voy a escribir a ' + email + ' con novedades del libro.', 'ok');
+            }).catch(function (err) {
+                avisar(err.delServidor ? err.message : 'No se pudo enviar. Revisá tu conexión y probá de nuevo.', 'error');
+                boton.disabled = false;
+                boton.textContent = textoBoton;
+            });
+        });
+    })();
+</script>
+
 <section id="contacto" class="seccion-oscura">
     <h2 class="titulo-seccion animar">Contacto</h2>
     <div class="contacto-contenedor animar">

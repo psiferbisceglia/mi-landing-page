@@ -387,6 +387,202 @@
             line-height: 1.6;
         }
 
+        /* --- LIBRO: Vivir con miedo (formulario para dejar el mail) --- */
+        .seccion-libro {
+            min-height: auto;
+            padding: 110px 10%;
+            background: linear-gradient(135deg, #4F6F4F 0%, var(--color-principal) 100%);
+            color: white;
+        }
+
+        .libro-contenedor {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .libro-tapa {
+            flex-shrink: 0;
+            perspective: 1200px;
+        }
+
+        .tapa {
+            width: 250px;
+            height: 360px;
+            padding: 34px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: var(--color-fondo);
+            color: var(--color-texto);
+            border-radius: 4px 14px 14px 4px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25), inset 14px 0 18px -10px rgba(0, 0, 0, 0.18);
+            transform: rotateY(-14deg) rotate(-2deg);
+            transition: transform 0.6s ease;
+            position: relative;
+        }
+
+        .tapa::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(0, 0, 0, 0.06);
+        }
+
+        .libro-tapa:hover .tapa {
+            transform: rotateY(0) rotate(0);
+        }
+
+        .tapa-autor {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #777;
+        }
+
+        .tapa-titulo {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            font-size: 2.6rem;
+            line-height: 1.1;
+            color: var(--color-principal);
+        }
+
+        .tapa-sub {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: #555;
+            border-top: 1px solid rgba(107, 142, 107, 0.4);
+            padding-top: 14px;
+        }
+
+        .libro-texto {
+            flex: 1;
+        }
+
+        .libro-etiqueta {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+
+        .libro-texto h2 {
+            font-size: 2.8rem;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .libro-texto > p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 14px;
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        .form-libro {
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .form-libro label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .form-libro-fila {
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-libro input[type="email"] {
+            flex: 1;
+            min-width: 0;
+            padding: 14px 22px;
+            border-radius: 30px;
+            border: 2px solid transparent;
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--color-texto);
+            background: white;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-libro input[type="email"]:focus {
+            border-color: #2C3E50;
+        }
+
+        .form-libro .btn {
+            background: var(--color-texto);
+            padding: 14px 28px;
+            font-family: inherit;
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+
+        .form-libro .btn:hover {
+            background: #1d2a36;
+        }
+
+        .form-libro .btn:disabled {
+            opacity: 0.7;
+            cursor: wait;
+        }
+
+        .campo-trampa {
+            position: absolute;
+            left: -10000px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+        }
+
+        .form-libro-nota {
+            font-size: 0.85rem;
+            margin-top: 12px;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .form-libro-mensaje:empty {
+            display: none;
+        }
+
+        .form-libro-mensaje {
+            margin-top: 14px;
+            padding: 12px 18px;
+            border-radius: 14px;
+            font-weight: 600;
+        }
+
+        .form-libro-mensaje.ok {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--color-principal);
+        }
+
+        .form-libro-mensaje.error {
+            background: rgba(44, 62, 80, 0.55);
+            color: white;
+        }
+
+        .form-libro.enviado label,
+        .form-libro.enviado .form-libro-fila,
+        .form-libro.enviado .form-libro-nota {
+            display: none;
+        }
+
         /* --- ESTILOS EXTRAS PARA EL BLOG --- */
         .blog-header {
             padding: 140px 10% 60px;
@@ -556,6 +752,39 @@
                 font-size: 1.1rem;
                 padding: 20px;
             }
+
+            .seccion-libro {
+                padding: 80px 7%;
+            }
+
+            .libro-contenedor {
+                flex-direction: column;
+                gap: 45px;
+                text-align: center;
+            }
+
+            .tapa {
+                width: 190px;
+                height: 275px;
+                padding: 26px 20px;
+                text-align: left;
+            }
+
+            .tapa-titulo {
+                font-size: 2rem;
+            }
+
+            .tapa-sub {
+                font-size: 0.8rem;
+            }
+
+            .libro-texto h2 {
+                font-size: 2.2rem;
+            }
+
+            .form-libro-fila {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -568,6 +797,7 @@
             <a href="/#inicio">Inicio</a>
             <a href="/#sobre-mi">Sobre mí</a>
             <a href="/#servicios">Servicios</a>
+            <a href="/#libro">Libro</a>
             <a href="/blog/">Artículos</a>
             <a href="/ilusiones/">Ilusiones</a>
             <a href="/chimp/">Chimp Test</a>
