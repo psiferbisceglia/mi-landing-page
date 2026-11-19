@@ -19,7 +19,7 @@ fuentes: [{"titulo": "Attention-deficit/hyperactivity disorder (ADHD) in adults:
 reel: 34
 tags: "blog"
 templateEngineOverride: "md"
-modificado: "2026-11-19T19:33:21Z"
+modificado: "2026-11-19T19:55:43Z"
 ---
 
 Tenés catorce pestañas abiertas. En la computadora y en la cabeza. Arrancaste a contestar un mail, te acordaste de que tenías que pagar la luz, entraste al banco, apareció una notificación... y cuarenta minutos después el mail sigue sin contestar.
@@ -64,7 +64,7 @@ A mí esta mirada me sirve mucho, porque saca la discusión del terreno de la vo
 
 Muchas personas llegan al diagnóstico adulto después de años de escuchar «sos un vago», «no te esforzás», «si quisieras, podrías». A fuerza de repetirlo, eso termina siendo lo que uno piensa de sí mismo.
 
-La revisión de Cortese lo incluye en el tratamiento: en la terapia cognitivo-conductual se trabajan las creencias negativas que dejan años de críticas y de culparse, como «no puedo hacer nada bien», porque desgastan la autoestima, la motivación y la esperanza. De eso hablo en la autoestima como un medidor de aceptación.
+La revisión de Cortese lo incluye en el tratamiento: en la terapia cognitivo-conductual se trabajan las creencias negativas que dejan años de críticas y de culparse, como «no puedo hacer nada bien», porque desgastan la autoestima, la motivación y la esperanza. De eso hablo en [la autoestima como un medidor de aceptación](/blog/autoestima-teoria-del-sociometro/).
 
 ## ¿Qué ayuda?
 
