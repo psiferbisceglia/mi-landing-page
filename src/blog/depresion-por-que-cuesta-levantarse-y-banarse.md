@@ -19,6 +19,7 @@ fuentes: [{"titulo": "Depressive disorder (depression)", "autores": "Organizaci�
 reel: 42
 tags: "blog"
 templateEngineOverride: "md"
+modificado: "2026-11-19T19:33:21Z"
 ---
 
 Te despertás y lo primero que sentís es peso. No tanto tristeza: peso. Levantarte cuesta. Bañarte, que antes hacías sin pensar, ahora se parece a organizar una mudanza. Contestar un mensaje, casi imposible.
@@ -47,7 +48,7 @@ El DSM-5-TR, el manual de diagnóstico de la Asociación Estadounidense de Psiqu
 - Dificultad para concentrarse.
 - Pensamientos de muerte.
 
-Uno de esos síntomas tiene que ser el ánimo deprimido o la pérdida de interés, y el cuadro tiene que afectar la vida social o laboral. También hay que descartar episodios de manía o hipomanía, que corresponden a otro diagnóstico. El sueño suele ser parte del problema: si es tu caso, te puede servir leer sobre el insomnio y la cama como lugar de pelea.
+Uno de esos síntomas tiene que ser el ánimo deprimido o la pérdida de interés, y el cuadro tiene que afectar la vida social o laboral. También hay que descartar episodios de manía o hipomanía, que corresponden a otro diagnóstico. El sueño suele ser parte del problema: si es tu caso, te puede servir leer sobre [el insomnio y la cama como lugar de pelea](/blog/insomnio-cuanto-mas-intentas-dormir/).
 
 ## Por qué cuesta tanto bañarse
 

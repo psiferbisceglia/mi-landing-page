@@ -19,6 +19,7 @@ fuentes: [{"titulo": "The discovery of Alzheimer's disease", "autores": "Hippius
 reel: 41
 tags: "blog"
 templateEngineOverride: "md"
+modificado: "2026-11-19T19:33:21Z"
 ---
 
 Estás contando algo y, de repente, se te escapa una palabra. Una que usaste toda la vida. La tenés en la punta de la lengua, pero no sale. Y cada vez pasa más seguido.
@@ -67,7 +68,7 @@ El Alzheimer no tiene cura, pero se puede hacer mucho. Hay medicamentos que ayud
 
 Quien cuida también necesita cuidado: la OMS recuerda que cuidar a una persona con demencia afecta la salud de quien lo hace, y recomienda pedir ayuda a familiares, amigos y profesionales, y tomarse descansos.
 
-En cuanto al riesgo, la edad es el factor más fuerte, pero no el único. La OMS menciona la presión alta, la diabetes, la obesidad, la [depresión](/blog/depresion-por-que-cuesta-levantarse-y-banarse/), la pérdida de visión o de audición, dormir mal, el tabaco, el alcohol, el sedentarismo y el aislamiento social. Cuidar esos factores reduce el riesgo de deterioro.
+En cuanto al riesgo, la edad es el factor más fuerte, pero no el único. La OMS menciona la presión alta, la diabetes, la obesidad, la [depresión](/blog/depresion-por-que-cuesta-levantarse-y-banarse/), la pérdida de visión o de audición, [dormir mal](/blog/insomnio-cuanto-mas-intentas-dormir/), el tabaco, el alcohol, el sedentarismo y el aislamiento social. Cuidar esos factores reduce el riesgo de deterioro.
 
 ## Cuándo consultar
 

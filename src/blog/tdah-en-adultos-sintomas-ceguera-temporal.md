@@ -19,6 +19,7 @@ fuentes: [{"titulo": "Attention-deficit/hyperactivity disorder (ADHD) in adults:
 reel: 34
 tags: "blog"
 templateEngineOverride: "md"
+modificado: "2026-11-19T19:33:21Z"
 ---
 
 Tenés catorce pestañas abiertas. En la computadora y en la cabeza. Arrancaste a contestar un mail, te acordaste de que tenías que pagar la luz, entraste al banco, apareció una notificación... y cuarenta minutos después el mail sigue sin contestar.
@@ -71,7 +72,7 @@ Según el NIMH, los tratamientos más comunes en adultos son la medicación, que
 
 La terapia cognitivo-conductual no apunta a borrar los síntomas centrales, sino a reducir su impacto en la vida diaria. Se trabajan habilidades concretas: resolver problemas, organizarse, manejar el tiempo, planificar. Y ahí vuelve Barkley, que proponía poner la ayuda donde y cuando hay que hacer la tarea. Alarmas, listas a la vista, plazos partidos en pasos chicos: maneras de traer el futuro al presente.
 
-También conviene mirar el sueño. Según el NIMH, los problemas para dormir afectan hasta al 70 % de los adultos con TDAH. Si es tu caso, te puede servir leer sobre el insomnio y la cama como lugar de pelea.
+También conviene mirar el sueño. Según el NIMH, los problemas para dormir afectan hasta al 70 % de los adultos con TDAH. Si es tu caso, te puede servir leer sobre [el insomnio y la cama como lugar de pelea](/blog/insomnio-cuanto-mas-intentas-dormir/).
 
 ## Cuándo consultar
 
