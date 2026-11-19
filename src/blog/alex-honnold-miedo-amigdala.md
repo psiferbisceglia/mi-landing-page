@@ -19,6 +19,7 @@ fuentes: [{"titulo": "The Strange Brain of the World's Greatest Solo Climber", "
 reel: 8
 tags: "blog"
 templateEngineOverride: "md"
+modificado: "2026-11-19T19:26:59Z"
 ---
 
 Alex Honnold subió unos 900 metros de roca sin cuerdas, sin arnés, sin nada que lo frenara si se resbalaba. Fue el 3 de junio de 2017, en El Capitán, dentro del parque Yosemite, y tardó 3 horas y 56 minutos. Esa escalada es el centro de *Free Solo*, el documental de Jimmy Chin y Elizabeth Chai Vasarhelyi que ganó el Oscar al mejor documental.
@@ -67,4 +68,4 @@ Y una aclaración: no se trata de buscar riesgos reales. Se trata de acercarte a
 
 ## Cuándo consultar
 
-Si el miedo te hace evitar cosas que te importan, si lo pensás todos los días o te va achicando la vida, conviene consultar con un psicólogo que trabaje con terapia cognitivo-conductual o con ACT, la terapia de aceptación y compromiso. La exposición se arma con alguien que te acompañe, a un ritmo que puedas sostener. Si te preguntás si el miedo se puede dejar atrás del todo, lo cuento en ¿El miedo se cura?.
+Si el miedo te hace evitar cosas que te importan, si lo pensás todos los días o te va achicando la vida, conviene consultar con un psicólogo que trabaje con terapia cognitivo-conductual o con ACT, la terapia de aceptación y compromiso. La exposición se arma con alguien que te acompañe, a un ritmo que puedas sostener. Si te preguntás si el miedo se puede dejar atrás del todo, lo cuento en [¿El miedo se cura?](/blog/el-miedo-se-cura-que-cambia-con-terapia/).

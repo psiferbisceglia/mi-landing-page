@@ -19,6 +19,7 @@ fuentes: [{"titulo": "Rafael Nadal", "medio": "Wikipedia", "url": "https://en.wi
 reel: 10
 tags: "blog"
 templateEngineOverride: "md"
+modificado: "2026-11-19T19:26:59Z"
 ---
 
 Rafael Nadal ganó 22 títulos de Grand Slam y, durante años, repitió una escena que cualquiera que lo vio jugar reconoce. En los cambios de lado acomodaba sus botellas junto a la silla, en una posición precisa, con las etiquetas mirando hacia la cancha. Si se caían o alguien las movía, las volvía a poner en su lugar.
@@ -66,7 +67,7 @@ A mí me sirve sumar algunas preguntas más simples para pensarlo en la vida de 
 
 Para el TOC, una de las terapias con respaldo en la investigación es una forma de terapia cognitivo-conductual llamada exposición con prevención de respuesta. Según el NIMH, consiste en acercarse de a poco, en un entorno seguro, a lo que dispara la obsesión, sin hacer la conducta de siempre. Al principio da ansiedad, y por eso algunas personas abandonan, pero en la mayoría las compulsiones bajan a medida que siguen el tratamiento, incluso en quienes no respondieron bien a la medicación.
 
-La idea de fondo se parece a la de no vivir entre algodones: comprobar que podés tolerar la incomodidad sin el ritual, y que lo que temías no pasa como lo imaginabas, o pasa y lo podés atravesar. Algo de eso también aparece en [cómo Alex Honnold fue achicando su miedo](/blog/alex-honnold-miedo-amigdala/).
+La idea de fondo se parece a la de [no vivir entre algodones](/blog/vivir-entre-algodones-costo-de-evitar-miedo/): comprobar que podés tolerar la incomodidad sin el ritual, y que lo que temías no pasa como lo imaginabas, o pasa y lo podés atravesar. Algo de eso también aparece en [cómo Alex Honnold fue achicando su miedo](/blog/alex-honnold-miedo-amigdala/).
 
 ## Cuándo consultar
 

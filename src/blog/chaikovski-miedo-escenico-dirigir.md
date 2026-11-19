@@ -19,6 +19,7 @@ fuentes: [{"titulo": "The Life & Letters of Peter Ilich Tchaikovsky", "autores":
 reel: 12
 tags: "blog"
 templateEngineOverride: "md"
+modificado: "2026-11-19T19:26:59Z"
 ---
 
 Hay miedos que desde afuera parecen absurdos. Chaikovski, el compositor de *El lago de los cisnes*, les contó a sus amigos que cuando se paraba frente a una orquesta sentía que la cabeza se le iba a caer de los hombros. Para evitarlo, la sostenía con la mano izquierda y dirigía solo con la derecha.
@@ -53,7 +54,7 @@ Lo más interesante es cómo volvió. En diciembre de 1886 le escribió a Modest
 
 En enero de 1887 le contó a su mecenas, Nadezhda von Meck, que dirigir le daba muchísima ansiedad y lo agotaba, pero que también le daba una gran satisfacción, y que estaba contento de haber vencido su timidez. De la noche del estreno contó que caminó hasta el podio como un autómata y que, a medida que avanzaba la obertura, se fue calmando cada vez más.
 
-No se volvió alguien sin miedo. En diciembre de 1887 salió de gira por Europa como director, según su hermano más con temor que con ganas, y en 1891 dirigió en el concierto inaugural del Carnegie Hall, en Nueva York. Algo parecido le pasó a Rachmaninoff después de su Primera Sinfonía.
+No se volvió alguien sin miedo. En diciembre de 1887 salió de gira por Europa como director, según su hermano más con temor que con ganas, y en 1891 dirigió en el concierto inaugural del Carnegie Hall, en Nueva York. Algo parecido le pasó a [Rachmaninoff después de su Primera Sinfonía](/blog/rachmaninoff-miedo-a-fracasar-otra-vez/).
 
 ## ¿Qué tan común es el miedo escénico entre músicos?
 
