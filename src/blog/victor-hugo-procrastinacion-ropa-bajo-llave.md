@@ -19,6 +19,7 @@ fuentes: [{"titulo": "Victor Hugo raconté par un témoin de sa vie, tomo 2", "a
 reel: 7
 tags: "blog"
 templateEngineOverride: "md"
+modificado: "2026-11-19T19:50:08Z"
 ---
 
 En 1830, Victor Hugo tenía un problema que mucha gente conoce: había prometido una novela, venía demorado hacía más de un año y el plazo estaba encima. Según contó su esposa, se compró una botella de tinta y una prenda tejida de lana gris, gruesa, que lo envolvía del cuello a los pies. Guardó su ropa bajo llave para no tentarse con salir y entró en su novela «como en una prisión».
@@ -47,7 +48,7 @@ Los mismos autores marcan algo clave: las consecuencias de postergar las paga el
 
 Un trabajo de 1997 lo muestra muy bien: Dianne Tice y Roy Baumeister siguieron a estudiantes a lo largo de un cuatrimestre. Al principio, los que postergaban reportaban menos estrés y menos enfermedades que los demás. Hacia el final la cosa se daba vuelta: tenían más estrés y más malestares, y en el total estuvieron más enfermos. Además sacaron peores notas en todos los trabajos.
 
-Esa es la trampa: postergar nos hace sentir mejor ahora, a costa de seguir con el mismo problema mañana. Es la misma lógica que mantiene muchos miedos: lo que alivia en el momento es lo que después los sostiene. Pasa con el turno del dentista que venís posponiendo y con [la información que preferimos no mirar](/blog/efecto-avestruz-por-que-evitamos-mirar-problemas/).
+Esa es la trampa: postergar nos hace sentir mejor ahora, a costa de seguir con el mismo problema mañana. Es la misma lógica que mantiene muchos miedos: lo que alivia en el momento es lo que después los sostiene. Pasa con [el turno del dentista que venís posponiendo](/blog/miedo-al-dentista-circulo-vicioso/) y con [la información que preferimos no mirar](/blog/efecto-avestruz-por-que-evitamos-mirar-problemas/).
 
 ## Atarse al mástil: decidir antes de la tentación
 

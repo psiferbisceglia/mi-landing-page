@@ -19,6 +19,7 @@ fuentes: [{"titulo": "Las frases del Indio Solari que marcaron a una generación
 reel: 33
 tags: "blog"
 templateEngineOverride: "md"
+modificado: "2026-11-19T19:50:08Z"
 ---
 
 «La vida para mí no es una cosa que se deba proteger entre algodones. El algodón está haciendo daño a esa vida». Lo dijo el músico Carlos «Indio» Solari en una entrevista, y me parece una frase extraordinaria para pensar cómo nos relacionamos con el miedo.
@@ -44,7 +45,7 @@ Muchas veces la segunda columna es mucho más larga que la primera, y no lo hab�
 
 ## ¿Por qué evitar mantiene el miedo?
 
-Hay otro costo, menos obvio: evitar impide que el miedo cambie. Según la teoría del procesamiento emocional, que repasan Kaczkurkin y Foa en una revisión de 2015, el miedo se sostiene con las conductas de evitación, porque no dejan que aprendamos algo nuevo. Si nunca subís al ascensor, nunca comprobás que podías subir. Es lo mismo que explica por qué el miedo sigue aunque el peligro ya no esté.
+Hay otro costo, menos obvio: evitar impide que el miedo cambie. Según la teoría del procesamiento emocional, que repasan Kaczkurkin y Foa en una revisión de 2015, el miedo se sostiene con las conductas de evitación, porque no dejan que aprendamos algo nuevo. Si nunca subís al ascensor, nunca comprobás que podías subir. Es lo mismo que explica [por qué el miedo sigue aunque el peligro ya no esté](/blog/miedos-aprendidos-evitar-sin-peligro/).
 
 ## ¿Qué es la exposición y por qué funciona?
 

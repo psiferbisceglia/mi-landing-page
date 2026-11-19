@@ -19,6 +19,7 @@ fuentes: [{"titulo": "What are Sleep Disorders?", "autores": "American Psychiatr
 reel: 44
 tags: "blog"
 templateEngineOverride: "md"
+modificado: "2026-11-19T19:50:08Z"
 ---
 
 Son las dos y cuarto de la mañana y estás mirando el techo. Estás cansadísimo, pero no te podés dormir. Mirás la hora y empezás a hacer cuentas: «Si me duermo ahora, todavía puedo dormir cuatro horas». Y cuanto más hacés la cuenta, más despierto estás.
@@ -66,7 +67,7 @@ A veces, para recuperar el sueño, tenemos que empezar por dejar de perseguirlo.
 
 El insomnio rara vez viene solo. Según la APA, entre el 40 y el 50 % de las personas con insomnio tiene además otro trastorno mental. Y la revisión de Morin señala que el insomnio es un factor de riesgo para varios cuadros psiquiátricos.
 
-Por eso la APA insiste en que los problemas de sueño se traten por sí mismos, aunque haya otros cuadros. Si la noche es el momento en que repasás todo, quizás te sirva leer sobre repasar de noche lo que dijiste en un cumpleaños. Y si junto con el insomnio hay desgano y falta de placer, mirá lo que escribí sobre [la depresión](/blog/depresion-por-que-cuesta-levantarse-y-banarse/).
+Por eso la APA insiste en que los problemas de sueño se traten por sí mismos, aunque haya otros cuadros. Si la noche es el momento en que repasás todo, quizás te sirva leer sobre [repasar de noche lo que dijiste en un cumpleaños](/blog/ansiedad-social-repasar-lo-que-dije/). Y si junto con el insomnio hay desgano y falta de placer, mirá lo que escribí sobre [la depresión](/blog/depresion-por-que-cuesta-levantarse-y-banarse/).
 
 ## Cuándo consultar
 

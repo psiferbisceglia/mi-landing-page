@@ -19,7 +19,7 @@ fuentes: [{"titulo": "Do ostriches really bury their heads in the sand?", "autor
 reel: 9
 tags: "blog"
 templateEngineOverride: "md"
-modificado: "2026-11-19T19:02:29Z"
+modificado: "2026-11-19T19:50:08Z"
 ---
 
 Los avestruces no esconden la cabeza en la tierra. Nunca lo hicieron. Y sin embargo la frase sigue viva, porque describe muy bien algo que hacemos nosotros: no abrir el resumen de la tarjeta, no pedir ese turno, dejar el mail sin contestar. Mientras no lo miramos, por un rato, parece que no existe.
@@ -48,7 +48,7 @@ En 2017, Russell Golman, David Hagmann y George Loewenstein revisaron investigac
 
 ## ¿Por qué evitar funciona al principio?
 
-Esconder la cabeza tiene un premio inmediato: el alivio. No abrís el resumen y por un rato no sentís el nudo en el estómago. Ese alivio es justamente lo que hace que la próxima vez sea más fácil volver a evitar. Lo cuento con más detalle en el artículo sobre los perros que seguían saltando cuando ya no había peligro: cuando evitar trae alivio, el miedo nunca tiene la oportunidad de bajar.
+Esconder la cabeza tiene un premio inmediato: el alivio. No abrís el resumen y por un rato no sentís el nudo en el estómago. Ese alivio es justamente lo que hace que la próxima vez sea más fácil volver a evitar. Lo cuento con más detalle en el artículo sobre [los perros que seguían saltando cuando ya no había peligro](/blog/miedos-aprendidos-evitar-sin-peligro/): cuando evitar trae alivio, el miedo nunca tiene la oportunidad de bajar.
 
 El problema es que el resumen sigue llegando y el dolor sigue ahí. Lo único que cambia es que lo enfrentamos más tarde, y muchas veces peor: con intereses, con un síntoma más avanzado, con una conversación que se volvió más difícil.
 
@@ -68,4 +68,4 @@ En las terapias contextuales, como ACT (terapia de aceptación y compromiso), no
 
 Si lo que evitás se va acumulando (estudios médicos sin hacer, deudas que crecen, conversaciones pendientes hace años), o si la sola idea de mirar te genera una angustia que no podés manejar, conviene consultar con un psicólogo. La evitación es uno de los motores que mantienen la ansiedad, y es algo que se trabaja bien en terapia.
 
-Y si lo que venís postergando es un control de salud, como pasa tantas veces con el dentista, empezá por ahí. Pedir el turno ya es sacar la cabeza del pozo.
+Y si lo que venís postergando es un control de salud, como pasa tantas veces con [el dentista](/blog/miedo-al-dentista-circulo-vicioso/), empezá por ahí. Pedir el turno ya es sacar la cabeza del pozo.

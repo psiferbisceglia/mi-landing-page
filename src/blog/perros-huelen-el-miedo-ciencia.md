@@ -19,6 +19,7 @@ fuentes: [{"titulo": "Dogs can discriminate between human baseline and psycholog
 reel: 13
 tags: "blog"
 templateEngineOverride: "md"
+modificado: "2026-11-19T19:50:08Z"
 ---
 
 Seguro escuchaste alguna vez que los perros pueden oler el miedo. Es de esas frases que se dicen en la plaza cuando alguien se pone tenso frente a un perro que no conoce. ¿Pero es verdad?
@@ -60,7 +61,7 @@ Y no solo los perros lo captan. En 2012, de Groot y colegas, de la Universidad d
 
 Entender el miedo como algo que pasa en el cuerpo cambia la forma de trabajarlo. A muchas personas les asustan sus propias sensaciones: el corazón que golpea, la transpiración, la respiración corta. Las viven como señal de que algo anda muy mal. En terapia aprendemos a reconocerlas como lo que son, una alarma haciendo su trabajo, y a no pelearnos con ellas.
 
-También ayuda saber de dónde viene ese miedo. Muchos se aprenden y siguen funcionando aunque el peligro ya no esté, como cuento en el artículo sobre los perros que saltaban de más. Y si te interesa lo que pasa en el cerebro, está el caso de [Alex Honnold y su amígdala](/blog/alex-honnold-miedo-amigdala/).
+También ayuda saber de dónde viene ese miedo. Muchos se aprenden y siguen funcionando aunque el peligro ya no esté, como cuento en el artículo sobre [los perros que saltaban de más](/blog/miedos-aprendidos-evitar-sin-peligro/). Y si te interesa lo que pasa en el cerebro, está el caso de [Alex Honnold y su amígdala](/blog/alex-honnold-miedo-amigdala/).
 
 ## ¿Y si a vos te dan miedo los perros?
 

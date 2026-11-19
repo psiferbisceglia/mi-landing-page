@@ -19,6 +19,7 @@ fuentes: [{"titulo": "An Autobiography or The Story of My Experiments with Truth
 reel: 11
 tags: "blog"
 templateEngineOverride: "md"
+modificado: "2026-11-19T19:50:08Z"
 ---
 
 La imagen que casi todos tenemos de Gandhi es la de alguien que les habló a multitudes y le hizo frente al Imperio británico. Por eso sorprende tanto lo que él mismo cuenta en su autobiografía: la primera vez que defendió un caso como abogado, se paró para interrogar a un testigo y no le salió ni una pregunta.
@@ -43,7 +44,7 @@ En otra reunión sobre vegetarianismo, se paró a leer un discurso que no ocupab
 
 Lo que le pasaba a Gandhi es mucho más común de lo que parece. En una encuesta telefónica a 499 personas de Winnipeg, Canadá, publicada en 1996 por Stein, Walker y Forde, un tercio dijo sentir una ansiedad excesiva al hablar ante un público grande. Entre los temores más mencionados estaban temblar o que se notaran los nervios (80 %), quedarse en blanco (74 %) y no poder seguir hablando (63 %). La mitad de esos miedos había empezado antes de los 13 años.
 
-A mí me sirve pensarlo así: cuando el cuerpo entra en modo alarma, buena parte de la atención se va a la amenaza y a uno mismo (cómo me ven, si se nota que tiemblo). Queda muy poco lugar para pensar la pregunta que había que hacer. Cuando ese miedo aparece en muchas situaciones sociales y limita la vida, puede tratarse de ansiedad social.
+A mí me sirve pensarlo así: cuando el cuerpo entra en modo alarma, buena parte de la atención se va a la amenaza y a uno mismo (cómo me ven, si se nota que tiemblo). Queda muy poco lugar para pensar la pregunta que había que hacer. Cuando ese miedo aparece en muchas situaciones sociales y limita la vida, puede tratarse de [ansiedad social](/blog/ansiedad-social-repasar-lo-que-dije/).
 
 ## ¿Qué cambió en Sudáfrica?
 
