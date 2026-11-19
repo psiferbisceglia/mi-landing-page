@@ -1,91 +1,213 @@
 ---
 layout: base.njk
+tipo: articulo
 ---
+{#- Artículo del blog. Los de Fer (Decap CMS) traen título, fecha, descripción, imagen y cuerpo.
+    Los que acompañan un reel (19/11/2026) además: resumen, video, redes, faq, fuentes, serie, libro y crisis. -#}
+<article class="articulo">
 
-<article style="max-width: 800px; margin: 0 auto; padding: 150px 20px 100px;">
-    
-    <div style="text-align: center; margin-bottom: 50px;">
-        <span style="color: #666; font-size: 0.95rem;">{{ page.date | formatoFecha }}</span>
-        <h1 style="font-size: 3rem; color: var(--color-principal); margin: 15px 0;">{{ title }}</h1>
-        {% if description %}
-        <p style="font-size: 1.25rem; color: #555; font-style: italic; max-width: 600px; margin: 0 auto;">{{ description }}</p>
+    <header class="articulo-cabecera">
+        <div class="migas" role="navigation" aria-label="Migas de pan"><a href="/">Inicio</a> <span aria-hidden="true">›</span> <a href="/blog/">Artículos</a></div>
+        {% if serie %}<span class="articulo-serie">{{ serie }}</span>{% endif %}
+        <h1>{{ title }}</h1>
+        {% if description and not resumen %}
+        <p class="articulo-bajada">{{ description }}</p>
         {% endif %}
-    </div>
+        <p class="articulo-meta">
+            Por <a href="/#sobre-mi">Lic. Fernando Bisceglia</a>, psicólogo clínico
+            · <time datetime="{{ page.date | fechaIso }}">{{ page.date | formatoFecha }}</time>
+            · {{ content | minutosLectura }} min de lectura
+        </p>
+    </header>
 
-    {% if image %}
-    <div class="articulo-img-container" style="margin-bottom: 50px; text-align: center;">
+    {% if resumen %}
+    <aside class="en-pocas-palabras">
+        <strong>En pocas palabras</strong>
+        <p>{{ resumen }}</p>
+    </aside>
+    {% endif %}
+
+    {% if video and video.youtube %}
+    <figure class="video-reel">
+        <button type="button" class="video-reel-boton" data-youtube="{{ video.youtube }}" aria-label="Ver el video: {{ title }}">
+            {% if image %}
+            <img src="{{ image | rutaUrl }}" alt="{{ imagenAlt or title }}" width="1080" height="1920" loading="eager" decoding="async">
+            {% else %}
+            <img src="https://i.ytimg.com/vi/{{ video.youtube }}/hqdefault.jpg" alt="{{ title }}" loading="eager" decoding="async">
+            {% endif %}
+            <span class="video-reel-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+        </button>
+        <figcaption>{{ video.titulo or title }}{% if video.duracion %} · {{ video.duracion | duracionTexto }}{% endif %}</figcaption>
+    </figure>
+    {% elif image %}
+    <div class="articulo-img-container">
         {% optimizedImage image, title, "(max-width: 800px) 100vw, 1200px", "articulo-imagen-principal" %}
     </div>
     {% endif %}
 
-    <div class="contenido-articulo" style="font-size: 1.15rem; color: #444; line-height: 1.8;">
+    <div class="contenido-articulo">
         {{ content | safe }}
     </div>
-    
-    <hr style="border: none; border-top: 1px solid rgba(0,0,0,0.1); margin: 60px 0;">
-    
-    <div style="display: flex; align-items: center; justify-content: center; gap: 30px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.03);">
-        <img src="/fotoperfil.webp" alt="Fernando Bisceglia" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+
+    {% if crisis %}
+    <aside class="recuadro-crisis" role="note">
+        <strong>Si estás pensando en hacerte daño</strong>
+        <p>No lo atravieses solo. En Argentina podés llamar al Centro de Asistencia al Suicida: <a href="tel:135">135</a>, <a href="tel:+541152751135">(011) 5275-1135</a> o <a href="tel:08003451435">0800 345 1435</a> (atienden voluntarios: fijate sus horarios en <a href="https://www.asistenciaalsuicida.org.ar/ayuda" target="_blank" rel="noopener">asistenciaalsuicida.org.ar</a>). Ante un riesgo inmediato, llamá al <a href="tel:911">911</a> o al <a href="tel:107">107</a>. Si estás en otro país, comunicate con el servicio de emergencias de tu lugar.</p>
+    </aside>
+    {% endif %}
+
+    {% if faq and faq.length %}
+    <div class="articulo-faq" id="preguntas">
+        <h2>Preguntas frecuentes</h2>
+        {% for f in faq %}
+        <details>
+            <summary>{{ f.p }}</summary>
+            <p>{{ f.r }}</p>
+        </details>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if video and video.transcripcion %}
+    <details class="transcripcion">
+        <summary>Texto del video</summary>
+        {% for p in video.transcripcion | parrafos %}<p>{{ p }}</p>{% endfor %}
+    </details>
+    {% endif %}
+
+    {% if redes %}
+    <p class="redes-reel">
+        Este artículo amplía mi reel. Miralo en
+        {% if redes.instagram %}<a href="{{ redes.instagram }}" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a>{% endif %}
+        {% if redes.youtube %}<a href="{{ redes.youtube }}" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> YouTube</a>{% endif %}
+        {% if redes.facebook %}<a href="{{ redes.facebook }}" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i> Facebook</a>{% endif %}
+    </p>
+    {% endif %}
+
+    {% if fuentes and fuentes.length %}
+    <div class="articulo-fuentes" id="fuentes">
+        <h2>Fuentes</h2>
+        <ol>
+            {% for f in fuentes %}
+            <li>{% if f.autores %}{{ f.autores }}. {% endif %}{% if f.url %}<a href="{{ f.url }}" target="_blank" rel="noopener">{{ f.titulo }}</a>{% else %}{{ f.titulo }}{% endif %}. <em>{{ f.medio }}</em>{% if f.fecha %}, {{ f.fecha }}{% endif %}.</li>
+            {% endfor %}
+        </ol>
+    </div>
+    {% endif %}
+
+    {% if libro %}
+    <aside class="recuadro-libro">
+        <span class="libro-etiqueta">Mi próximo libro</span>
+        <h2>Vivir con miedo</h2>
+        <p>Estoy escribiendo un libro sobre el miedo: de dónde viene, las mil formas que tenemos de esquivarlo y qué pasa cuando dejamos de huir de él.</p>
+        <a href="/#libro" class="btn">Quiero info del libro</a>
+    </aside>
+    {% endif %}
+
+    <hr class="articulo-separador">
+
+    <div class="articulo-autor">
+        <img src="/fotoperfil.webp" alt="Fernando Bisceglia" width="100" height="100">
         <div>
-            <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--color-texto);">Lic. Prof. Fernando Bisceglia</h3>
-            <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Psicólogo Clínico. Especialista en Terapias Contextuales.</p>
-            <a href="/#contacto" class="btn" style="padding: 8px 20px; font-size: 0.9rem;">Agendar un turno</a>
+            <h3>Lic. Prof. Fernando Bisceglia</h3>
+            <p>Psicólogo clínico y psicoterapeuta. Trabajo online con terapias contextuales (como ACT) y aportes del pensamiento psicodinámico. Maestrando en Psicología Cognitiva.</p>
+            <a href="/#contacto" class="btn">Agendar un turno</a>
         </div>
     </div>
-    
+
+    {% set otros = collections.blog | relacionados(page.url, serie, 3) %}
+    {% if otros.length %}
+    <div class="articulo-relacionados">
+        <h2>Seguí leyendo</h2>
+        <ul>
+            {% for p in otros %}
+            <li><a href="{{ p.url }}">{{ p.data.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
 </article>
 
+{% if video and video.youtube %}
+<script>
+    // El video se carga recién al tocarlo: la página abre rápido y YouTube no pone cookies antes.
+    document.querySelectorAll('.video-reel-boton').forEach(function (b) {
+        b.addEventListener('click', function () {
+            var f = document.createElement('iframe');
+            f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.youtube + '?autoplay=1&rel=0&playsinline=1';
+            f.title = b.getAttribute('aria-label');
+            f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            f.allowFullscreen = true;
+            b.replaceWith(f);
+        });
+    });
+</script>
+{% endif %}
+
 <style>
-    /* Estilos específicos para el markdown generado */
-    .contenido-articulo h2 {
-        font-size: 2rem;
-        color: var(--color-principal);
-        margin: 40px 0 20px;
-    }
-    .contenido-articulo h3 {
-        font-size: 1.5rem;
-        margin: 30px 0 15px;
-    }
-    .contenido-articulo p {
-        margin-bottom: 25px;
-    }
-    .contenido-articulo ul, .contenido-articulo ol {
-        margin: 0 0 25px 20px;
-    }
-    .contenido-articulo li {
-        margin-bottom: 10px;
-    }
-    .contenido-articulo strong {
-        color: var(--color-texto);
-    }
-    .contenido-articulo blockquote {
-        border-left: 4px solid var(--color-principal);
-        padding-left: 20px;
-        margin: 30px 0;
-        font-style: italic;
-        color: #555;
-    }
-    .articulo-img-container {
-        width: 100%;
-        max-width: 100%;
-        overflow: visible; /* To allow shadow */
-    }
-    
-    .articulo-img-container picture {
-        display: block;
-        width: 100%;
-        max-width: 700px;
-        margin: 0 auto;
-    }
-    
-    .articulo-imagen-principal {
-        display: block;
-        width: 100%;
-        height: auto;
-        max-height: 500px;
-        object-fit: cover;
-        margin: 0 auto;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    .articulo { max-width: 760px; margin: 0 auto; padding: 140px 20px 100px; }
+    .migas { font-size: 0.9rem; color: #777; margin-bottom: 18px; }
+    .migas a { color: var(--color-principal); text-decoration: none; }
+    .articulo-cabecera { text-align: center; margin-bottom: 40px; }
+    .articulo-serie { display: inline-block; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-principal); background: var(--color-secundario); padding: 5px 14px; border-radius: 20px; margin-bottom: 14px; }
+    .articulo-cabecera h1 { font-size: 2.6rem; line-height: 1.2; color: var(--color-principal); margin: 10px 0 18px; }
+    .articulo-bajada { font-size: 1.2rem; color: #555; font-style: italic; max-width: 600px; margin: 0 auto 14px; }
+    .articulo-meta { font-size: 0.95rem; color: #666; }
+    .articulo-meta a { color: var(--color-texto); }
+    .en-pocas-palabras { background: var(--color-secundario); border-left: 5px solid var(--color-principal); border-radius: 14px; padding: 22px 26px; margin: 0 0 40px; }
+    .en-pocas-palabras strong { display: block; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-principal); margin-bottom: 8px; }
+    .en-pocas-palabras p { font-size: 1.12rem; line-height: 1.7; color: var(--color-texto); }
+    .video-reel { margin: 0 auto 45px; max-width: 340px; text-align: center; }
+    .video-reel-boton, .video-reel iframe { position: relative; display: block; width: 100%; aspect-ratio: 9 / 16; border: 0; padding: 0; border-radius: 18px; overflow: hidden; cursor: pointer; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+    .video-reel-boton img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .video-reel-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 74px; height: 74px; border-radius: 50%; background: rgba(0,0,0,0.6); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; padding-left: 5px; transition: background 0.2s; }
+    .video-reel-boton:hover .video-reel-play { background: var(--color-principal); }
+    .video-reel figcaption { font-size: 0.9rem; color: #777; margin-top: 10px; }
+    .contenido-articulo { font-size: 1.15rem; color: #444; line-height: 1.8; }
+    .contenido-articulo h2 { font-size: 1.8rem; line-height: 1.3; color: var(--color-principal); margin: 45px 0 18px; }
+    .contenido-articulo h3 { font-size: 1.4rem; margin: 30px 0 15px; }
+    .contenido-articulo p { margin-bottom: 22px; }
+    .contenido-articulo ul, .contenido-articulo ol { margin: 0 0 25px 22px; }
+    .contenido-articulo li { margin-bottom: 10px; }
+    .contenido-articulo strong { color: var(--color-texto); }
+    .contenido-articulo a { color: var(--color-principal); }
+    .contenido-articulo blockquote { border-left: 4px solid var(--color-principal); padding-left: 20px; margin: 30px 0; font-style: italic; color: #555; }
+    .recuadro-crisis { background: #FFF6E5; border: 1px solid #F0C36D; border-radius: 14px; padding: 20px 24px; margin: 35px 0; font-size: 1rem; line-height: 1.7; color: #4a3b1a; }
+    .recuadro-crisis strong { display: block; margin-bottom: 6px; font-size: 1.05rem; }
+    .recuadro-crisis a { color: #8a5a00; font-weight: 600; }
+    .articulo-faq, .articulo-fuentes, .articulo-relacionados { margin-top: 50px; }
+    .articulo-faq h2, .articulo-fuentes h2, .articulo-relacionados h2 { font-size: 1.6rem; color: var(--color-principal); margin-bottom: 18px; }
+    .articulo-faq details { background: #fff; border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; box-shadow: 0 3px 12px rgba(0,0,0,0.04); }
+    .articulo-faq summary { cursor: pointer; font-weight: 600; color: var(--color-texto); font-size: 1.05rem; }
+    .articulo-faq details p { margin-top: 12px; color: #555; line-height: 1.7; }
+    .transcripcion { margin-top: 30px; background: #fff; border-radius: 12px; padding: 16px 20px; box-shadow: 0 3px 12px rgba(0,0,0,0.04); }
+    .transcripcion summary { cursor: pointer; font-weight: 600; color: var(--color-texto); }
+    .transcripcion p { margin-top: 12px; color: #555; line-height: 1.7; font-size: 1rem; }
+    .redes-reel { margin-top: 30px; font-size: 1rem; color: #555; text-align: center; }
+    .redes-reel a { display: inline-block; margin: 6px 8px 0; color: var(--color-principal); text-decoration: none; font-weight: 600; }
+    .articulo-fuentes ol { margin-left: 22px; font-size: 0.95rem; color: #555; line-height: 1.6; }
+    .articulo-fuentes li { margin-bottom: 10px; overflow-wrap: anywhere; }
+    .articulo-fuentes a { color: var(--color-principal); }
+    .recuadro-libro { margin-top: 50px; background: var(--color-secundario); border-radius: 20px; padding: 30px; text-align: center; }
+    .recuadro-libro h2 { font-family: 'Lora', serif; font-size: 1.8rem; color: var(--color-texto); margin: 8px 0 12px; }
+    .recuadro-libro p { color: #555; margin-bottom: 20px; line-height: 1.7; }
+    .articulo-separador { border: none; border-top: 1px solid rgba(0,0,0,0.1); margin: 60px 0; }
+    .articulo-autor { display: flex; align-items: center; justify-content: center; gap: 30px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.03); }
+    .articulo-autor img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .articulo-autor h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--color-texto); }
+    .articulo-autor p { font-size: 0.95rem; color: #666; margin-bottom: 15px; line-height: 1.6; }
+    .articulo-autor .btn { padding: 8px 20px; font-size: 0.9rem; }
+    .articulo-relacionados ul { list-style: none; }
+    .articulo-relacionados li { margin-bottom: 12px; }
+    .articulo-relacionados a { color: var(--color-texto); font-size: 1.1rem; text-decoration: none; border-bottom: 1px solid var(--color-principal); }
+    .articulo-img-container { margin-bottom: 50px; text-align: center; width: 100%; }
+    .articulo-img-container picture { display: block; width: 100%; max-width: 700px; margin: 0 auto; }
+    .articulo-imagen-principal { display: block; width: 100%; height: auto; max-height: 500px; object-fit: cover; margin: 0 auto; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    @media (max-width: 768px) {
+        .articulo { padding-top: 110px; }
+        .articulo-cabecera h1 { font-size: 2rem; }
+        .contenido-articulo h2 { font-size: 1.5rem; }
+        .articulo-autor { flex-direction: column; text-align: center; padding: 30px 20px; }
     }
 </style>

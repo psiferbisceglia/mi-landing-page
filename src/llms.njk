@@ -1,0 +1,25 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# Fernando Bisceglia, psicólogo clínico
+
+> Lic. Prof. Fernando Bisceglia es psicólogo clínico y psicoterapeuta en Argentina. Atiende online a adultos (ansiedad, depresión, estrés y crisis vitales) y da supervisiones a profesionales de la salud mental. Trabaja con terapias contextuales, como la Terapia de Aceptación y Compromiso (ACT), y aportes del pensamiento psicodinámico. Es maestrando en Psicología Cognitiva y divulga psicología en Instagram, YouTube, TikTok y Facebook como @psiferbisceglia. Está escribiendo un libro sobre el miedo, «Vivir con miedo».
+
+## Sitio
+
+- [Inicio, sobre mí, servicios y contacto]({{ sitio.url }}/): quién es, cómo trabaja y cómo pedir un turno.
+- [Libro «Vivir con miedo»]({{ sitio.url }}/#libro): de qué trata y cómo recibir novedades.
+- [Artículos]({{ sitio.url }}/blog/): artículos de psicología con fuentes al final. Muchos amplían un reel.
+- [Ilusiones ópticas interactivas]({{ sitio.url }}/ilusiones/)
+
+## Artículos
+{% for p in collections.blog | reverse %}
+- [{{ p.data.title | safe }}]({{ sitio.url }}{{ p.url | rutaUrl }}): {{ (p.data.resumen or p.data.description) | safe }}
+{%- endfor %}
+
+## Contacto
+
+- Mail: {{ sitio.autor.email }}
+- Instagram: https://www.instagram.com/psiferbisceglia
+- YouTube: https://www.youtube.com/@PsiFerBisceglia

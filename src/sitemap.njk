@@ -1,0 +1,15 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for p in collections.all %}
+{%- if p.url and p.url.indexOf("/admin") != 0 and p.data.sitemap !== false %}
+  <url>
+    <loc>{{ sitio.url }}{{ p.url | rutaUrl }}</loc>
+    <lastmod>{{ (p.data.modificado or p.date) | fechaCorta }}</lastmod>
+  </url>
+{%- endif %}
+{%- endfor %}
+</urlset>

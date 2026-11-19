@@ -1,0 +1,27 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Artículos de Fernando Bisceglia</title>
+  <link>{{ sitio.url }}/blog/</link>
+  <atom:link href="{{ sitio.url }}/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Psicología basada en evidencia: miedo, ansiedad y salud mental, por el psicólogo clínico Fernando Bisceglia.</description>
+  <language>es</language>
+  {%- set posts = collections.blog | reverse %}
+  {%- if posts.length %}
+  <lastBuildDate>{{ posts[0].date | fechaRss }}</lastBuildDate>
+  {%- endif %}
+  {%- for p in posts %}
+  <item>
+    <title>{{ p.data.title }}</title>
+    <link>{{ sitio.url }}{{ p.url | rutaUrl }}</link>
+    <guid isPermaLink="true">{{ sitio.url }}{{ p.url | rutaUrl }}</guid>
+    <pubDate>{{ p.date | fechaRss }}</pubDate>
+    <description>{{ p.data.resumen or p.data.description }}</description>
+  </item>
+  {%- endfor %}
+</channel>
+</rss>

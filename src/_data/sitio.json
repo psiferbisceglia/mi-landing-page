@@ -1,0 +1,22 @@
+{
+  "url": "https://psiferbisceglia.com",
+  "nombre": "Fernando Bisceglia",
+  "titulo": "Fernando Bisceglia | Psicólogo Clínico",
+  "descripcion": "Fernando Bisceglia, psicólogo clínico y psicoterapeuta. Sesiones online, psicoterapia basada en evidencia y orientación psicológica.",
+  "autor": {
+    "nombre": "Fernando Bisceglia",
+    "titulo": "Lic. Prof. Fernando Bisceglia",
+    "puesto": "Psicólogo clínico y psicoterapeuta",
+    "descripcion": "Psicólogo clínico y psicoterapeuta. Trabaja online con terapias contextuales, como la Terapia de Aceptación y Compromiso (ACT), y aportes del pensamiento psicodinámico. Maestrando en Psicología Cognitiva y divulgador de psicología.",
+    "email": "psiferbisceglia@gmail.com",
+    "foto": "/fotoperfil.webp",
+    "redes": [
+      "https://www.instagram.com/psiferbisceglia",
+      "https://www.youtube.com/@PsiFerBisceglia",
+      "https://www.tiktok.com/@PsiFerBisceglia",
+      "https://www.facebook.com/psiferbisceglia"
+    ],
+    "temas": ["miedo", "ansiedad", "ansiedad social", "depresión", "Terapia de Aceptación y Compromiso", "terapias contextuales", "psicología cognitiva", "psicoterapia basada en evidencia"]
+  },
+  "indexnow": "604bc6a571e238bb8b99b7fae5dae089"
+}

@@ -20,4 +20,57 @@ collections:
       - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
       - { label: "Descripción / Resumen", name: "description", widget: "text" }
       - { label: "Imagen Principal (Opcional)", name: "image", widget: "image", required: false }
+      # Desde el 19/11/2026 cada reel publicado tiene su artículo. Estos campos los completa el publicador; están acá
+      # para que Decap no los borre si se edita el artículo desde el panel.
+      - { label: "Título para Google (opcional)", name: "tituloSeo", widget: "string", required: false }
+      - { label: "En pocas palabras (opcional)", name: "resumen", widget: "text", required: false }
+      - { label: "Descripción de la imagen (opcional)", name: "imagenAlt", widget: "string", required: false }
+      - { label: "Serie (opcional)", name: "serie", widget: "string", required: false }
+      - { label: "Tema (opcional)", name: "tema", widget: "string", required: false }
+      - { label: "Recuadro del libro", name: "libro", widget: "boolean", required: false, default: false }
+      - { label: "Recuadro de líneas de ayuda", name: "crisis", widget: "boolean", required: false, default: false }
+      - { label: "Etiquetas", name: "etiquetas", widget: "list", required: false }
+      - label: "Reel en las redes"
+        name: "redes"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - { label: "Instagram", name: "instagram", widget: "string", required: false }
+          - { label: "YouTube", name: "youtube", widget: "string", required: false }
+          - { label: "Facebook", name: "facebook", widget: "string", required: false }
+      - label: "Video"
+        name: "video"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - { label: "ID de YouTube", name: "youtube", widget: "string", required: false }
+          - { label: "Título", name: "titulo", widget: "string", required: false }
+          - { label: "Duración (segundos)", name: "duracion", widget: "number", value_type: "float", required: false }
+          - { label: "Subido", name: "subido", widget: "string", required: false }
+          - { label: "Texto del video", name: "transcripcion", widget: "text", required: false }
+      - label: "Preguntas frecuentes"
+        name: "faq"
+        widget: "list"
+        required: false
+        collapsed: true
+        fields:
+          - { label: "Pregunta", name: "p", widget: "string" }
+          - { label: "Respuesta", name: "r", widget: "text" }
+      - label: "Fuentes"
+        name: "fuentes"
+        widget: "list"
+        required: false
+        collapsed: true
+        fields:
+          - { label: "Título", name: "titulo", widget: "string" }
+          - { label: "Autores", name: "autores", widget: "string", required: false }
+          - { label: "Medio", name: "medio", widget: "string", required: false }
+          - { label: "Fecha", name: "fecha", widget: "string", required: false }
+          - { label: "Link", name: "url", widget: "string", required: false }
+      - { label: "Reel", name: "reel", widget: "hidden", required: false }
+      - { label: "Modificado", name: "modificado", widget: "hidden", required: false }
+      - { label: "Tags", name: "tags", widget: "hidden", required: false, default: "blog" }
+      - { label: "Motor", name: "templateEngineOverride", widget: "hidden", required: false }
       - { label: "Cuerpo del Artículo", name: "body", widget: "markdown" }

@@ -4,19 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title | default("Fernando Bisceglia | Psicólogo") }}</title>
+    {%- if tipo == "articulo" %}
+    {%- set tituloPagina = (tituloSeo or title) ~ " | Fernando Bisceglia" %}
+    {%- else %}
+    {%- set tituloPagina = title or sitio.titulo %}
+    {%- endif %}
+    {%- set descripcionPagina = description or sitio.descripcion %}
+    <title>{{ tituloPagina }}</title>
 
     <!-- Meta etiquetas SEO -->
-    <meta name="description"
-        content="Fernando Bisceglia, psicólogo clínico y psicoterapeuta. Sesiones online, psicoterapia basada en evidencia y orientación psicológica.">
+    <meta name="description" content="{{ descripcionPagina }}">
     <meta name="author" content="Fernando Bisceglia">
+    <link rel="canonical" href="{{ sitio.url }}{{ page.url }}">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="alternate" type="application/rss+xml" title="Artículos de Fernando Bisceglia" href="{{ sitio.url }}/feed.xml">
 
     <!-- Open Graph (Redes Sociales y WhatsApp) -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="{{ title | default('Fernando Bisceglia | Psicólogo Clínico') }}">
-    <meta property="og:description"
-        content="Acompañamiento profesional para tu bienestar mental y desarrollo personal.">
-    <meta property="og:image" content="/fotoperfil.webp">
+    <meta property="og:type" content="{{ 'article' if tipo == 'articulo' else 'website' }}">
+    <meta property="og:site_name" content="Fernando Bisceglia">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:url" content="{{ sitio.url }}{{ page.url }}">
+    <meta property="og:title" content="{{ title or sitio.titulo }}">
+    <meta property="og:description" content="{{ descripcionPagina }}">
+    <meta property="og:image" content="{{ (image or sitio.autor.foto) | absoluta }}">
+    <meta name="twitter:card" content="summary_large_image">
+    {%- if tipo == "articulo" %}
+    <meta property="article:published_time" content="{{ page.date | fechaIso }}">
+    <meta property="article:author" content="{{ sitio.url }}/#sobre-mi">
+    <script type="application/ld+json">{{ { url: page.url, title: title, description: description, date: page.date, modificado: modificado, image: image, resumen: resumen, etiquetas: etiquetas, serie: serie, fuentes: fuentes, faq: faq, video: video } | ldArticulo | safe }}</script>
+    {%- elif page.url == "/" %}
+    <script type="application/ld+json">{{ "" | ldInicio | safe }}</script>
+    {%- endif %}
 
     <!-- Precarga de fuentes para mejorar rendimiento -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

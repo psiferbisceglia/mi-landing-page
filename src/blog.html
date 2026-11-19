@@ -1,6 +1,7 @@
 ---
 layout: base.njk
-title: "Artículos - Fernando Bisceglia"
+title: "Artículos de psicología - Fernando Bisceglia"
+description: "Artículos de psicología basada en evidencia del psicólogo clínico Fernando Bisceglia: miedo, ansiedad, depresión y salud mental, con fuentes."
 ---
 
 <section class="blog-header animar">
@@ -27,7 +28,7 @@ title: "Artículos - Fernando Bisceglia"
         {% endif %}
 
         <div class="articulo-contenido">
-            <div class="articulo-fecha">{{ post.date | formatoFecha }}</div>
+            <div class="articulo-fecha">{{ post.date | formatoFecha }}{% if post.data.serie %} · {{ post.data.serie }}{% endif %}</div>
             <h2 class="articulo-titulo">{{ post.data.title }}</h2>
             <p class="articulo-desc">{{ post.data.description }}</p>
             <div class="leer-mas">Leer artículo <i class="fa-solid fa-arrow-right"></i></div>
