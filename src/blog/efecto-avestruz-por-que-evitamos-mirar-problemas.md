@@ -19,7 +19,7 @@ fuentes: [{"titulo": "Do ostriches really bury their heads in the sand?", "autor
 reel: 9
 tags: "blog"
 templateEngineOverride: "md"
-modificado: "2026-11-19T18:54:54Z"
+modificado: "2026-11-19T19:02:29Z"
 ---
 
 Los avestruces no esconden la cabeza en la tierra. Nunca lo hicieron. Y sin embargo la frase sigue viva, porque describe muy bien algo que hacemos nosotros: no abrir el resumen de la tarjeta, no pedir ese turno, dejar el mail sin contestar. Mientras no lo miramos, por un rato, parece que no existe.
@@ -62,7 +62,7 @@ En las terapias contextuales, como ACT (terapia de aceptación y compromiso), no
 - **Separar mirar de resolver.** Abrir el resumen no es pagarlo hoy. Primero mirás; después decidís qué hacer.
 - **Achicar el paso.** Si pedir el turno te paraliza, el primer paso puede ser buscar el teléfono del consultorio.
 - **Dejar que la ansiedad esté.** Va a aparecer. No hace falta esperar a que se vaya para dar el paso.
-- **Acordarte de para qué.** Tu salud, tu tranquilidad, la gente que querés. Es lo que hace Coraje, el perro cobarde, con Muriel: va temblando porque le importa.
+- **Acordarte de para qué.** Tu salud, tu tranquilidad, la gente que querés. Es lo que hace [Coraje, el perro cobarde, con Muriel](/blog/valentia-actuar-con-miedo-coraje-perro-cobarde/): va temblando porque le importa.
 
 ## ¿Cuándo consultar?
 
